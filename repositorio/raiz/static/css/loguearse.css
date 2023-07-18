@@ -1,0 +1,27 @@
+/* para posicionar en el medio a la carta */
+.bg-white{
+  margin-bottom: 5rem; 
+}
+
+/* !important es para que anule lo que viene por defecto */
+.bg-primary {
+  background-color: #02023cd2 !important;
+}
+
+
+.bg-info {
+  border-color: blue !important;
+}
+.input-group-text.bg-info {
+  background-color: blue !important;
+  border-color: blue !important;
+}
+.btn.btn-info a {
+  color: white !important;
+  text-decoration: none !important;
+}
+.btn.btn-info {
+  background-color: blue !important;
+  border-color: blue !important;
+
+}
