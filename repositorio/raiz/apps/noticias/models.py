@@ -1,9 +1,13 @@
 from django.db import models
+from apps.usuarios.models import Usuario
 
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length=60)
     descripcion= models.CharField(max_length=250,null=True,blank=True)
+    imagen= models.ImageField(upload_to='noticias',null=True)
+    estado = models.BooleanField(default=True)  # Estado True = Habilitado, Estado False = Deshabilitado
+
     
     def __str__(self):
         return self.nombre
@@ -15,6 +19,7 @@ class Noticia(models.Model):
     autor= models.CharField(max_length=50, null=True, blank=True)
     imagen = models.ImageField(upload_to='noticias',null=True)
     categoria=models.ForeignKey(Categoria,on_delete=models.CASCADE,null=True)
+    estado = models.BooleanField(default=True)  # Estado True = Habilitado, Estado False = Deshabilitado
     
     def __str__(self):
         return self.titulo
