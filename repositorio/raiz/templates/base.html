@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 2030</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+</head>
+<body>
+   <header>
+
+        <div class="container">
+
+            <p class="logo">ODS 2030</p>
+            <nav>
+                <a href="{%url 'usuarios:Registrarse'%}">Register</a>
+                <a href="{%url 'usuarios:Loguearse'%}">Login</a>
+                <a href="link-p-redireccionar">Noticias</a>
+                <a href="link-p-redireccionar">Contacto</a>
+            </nav>
+
+        </div>
+
+   </header> 
+
+   <div style="margin-bottom: 2rem;">
+    {%block contenido%}
+
+    {%endblock contenido%}
+  </div>
+
+  <footer>
+
+    <div class="container">
+        <p>&copy; Informatorio 2023</p>
+    </div>
+        
+</footer>
+</body>
+</html>
