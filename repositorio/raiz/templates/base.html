@@ -11,16 +11,16 @@
 
 </head>
 <body>
+    <!-- header base -->
    <header>
 
         <div class="container">
 
             <p class="logo">ODS 2030</p>
             <nav>
-                <a href="{%url 'usuarios:Registrarse'%}">Register</a>
-                <a href="{%url 'usuarios:Loguearse'%}">Login</a>
                 <a href="link-p-redireccionar">Noticias</a>
                 <a href="link-p-redireccionar">Contacto</a>
+                <a href="{%url 'usuarios:Loguearse'%}">Login</a>
             </nav>
 
         </div>
@@ -33,12 +33,66 @@
     {%endblock contenido%}
   </div>
 
-  <footer>
+  <!-- footer base -->
+    <footer>
 
-    <div class="container">
-        <p>&copy; Informatorio 2023</p>
-    </div>
-        
-</footer>
+        <div class="pie">
+
+            <div class="rectangulo">
+
+                <div class="logo">
+                    <img src="{% static 'img/base/pie-logo.jpg' %}" alt="Logo pie de página">
+
+                </div>
+
+                <div class="redes">
+                    <span class="fb"><i class="fa-brands fa-facebook"></i></span>
+                    <span class="twt"><i class="fa-brands fa-twitter"></i></span>
+                    <span class="ig"><i class="fa-brands fa-instagram"></i></span>
+                    <span class="li"><i class="fa-brands fa-linkedin"></i></span>
+                    <span class="yt"><i class="fa-brands fa-youtube"></i></span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <div class="title-container">
+                <h6>Inicio</h6>
+                <a href="link-17objetivos">Objetivos</a>
+                <a href="link-enlaces-de-interes">Enlaces de Interés</a>
+                <a href="link-suscribete">Suscripción</a>
+                <a href="link-registro">Registrarte</a>
+                <a href="link-login">Login</a>
+            </div>
+
+            <div class="title-container">
+                <h6>Acerca de la República Argentina</h6>
+                <a href="https://www.argentina.gob.ar/pais">Nuestro País</a>
+                <a href="https://www.argentina.gob.ar/normativa">Leyes Argentinas</a>
+                <a href="https://www.argentina.gob.ar/organismos">Organismos</a>
+                <a href="https://www.argentina.gob.ar/jefatura/mapa-del-estado">Organismos</a>
+            </div>
+
+            <div class="title-container">
+                <h6>Acerca de Argentina.gob.ar</h6>
+                <a href="https://www.argentina.gob.ar/terminos-y-condiciones">Términos y condiciones</a>
+                <a href="https://www.argentina.gob.ar/sugerencias">Sugerencias</a>
+            </div>
+            
+        </div>
+
+        <div class="derechos">
+
+            <p>Copyright©2023Informatorio. All right reserved</p>
+            <p>Privacy Policy Term and condition</p>
+
+        </div>
+
+    </footer>
+    <script src="https://kit.fontawesome.com/94500f7625.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es-ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 2030</title>
+    <script src="https://kit.fontawesome.com/94500f7625.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="noticias.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .noticias-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .noticia {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: calc(33.33% - 20px);
+            min-width: 300px;
+        }
+
+        .noticia h2 {
+            margin: 0;
+        }
+
+        .noticia .fecha {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .noticia .contenido {
+            margin-bottom: 10px;
+        }
+
+        .noticia .acciones {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .noticia .acciones button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .noticia .imagen {
+            text-align: center;
+        }
+
+        .noticia .imagen img {
+            max-width: 100%;
+            max-height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .noticia .comentarios {
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .noticia {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <section id="noticias">
+       <div class="container noticias-container">
+
+           <div class="noticia">
+               <h2>Noticia 1</h2>
+               <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+               <div class="imagen">
+                   <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+               </div>
+               <div class="contenido">
+                   <p>Contenido de la noticia 1...</p>
+               </div>
+               <div class="acciones">
+                   <button class="cargar">Cargar</button>
+                   <button class="editar">Editar</button>
+                   <button class="eliminar">Eliminar</button>
+               </div>
+               <div class="comentarios">
+                   <h3>Comentarios</h3>
+                   <p>Comentario 1...</p>
+                   <p>Comentario 2...</p>
+               </div>
+           </div>
+
+           <div class="noticia">
+            <h2>Noticia 2</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div>
+        <div class="noticia">
+            <h2>Noticia 3</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 4</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 5</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 6</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 7</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 8</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div><div class="noticia">
+            <h2>Noticia 9</h2>
+            <div class="fecha">Usuario: Usuario1 | Fecha: 20 de Julio 2023, 12:30 PM</div>
+            <div class="imagen">
+                <img src="media/noticia1.jpg" alt="Imagen Noticia 1">
+            </div>
+            <div class="contenido">
+                <p>Contenido de la noticia 1...</p>
+            </div>
+            <div class="acciones">
+                <button class="cargar">Cargar</button>
+                <button class="editar">Editar</button>
+                <button class="eliminar">Eliminar</button>
+            </div>
+            <div class="comentarios">
+                <h3>Comentarios</h3>
+                <p>Comentario 1...</p>
+                <p>Comentario 2...</p>
+            </div>
+        </div>
+
+       </div>
+
+   </section>
+
+
+
+</body>
+</html>

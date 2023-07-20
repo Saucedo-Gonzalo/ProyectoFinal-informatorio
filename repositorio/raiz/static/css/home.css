@@ -16,16 +16,16 @@ body {
 h1{ font-size: 3.5em;}
 h2{ font-size: 2.7em;}
 h3{ font-size: 2em;}
+h6{ font-size: 1.55em;}
 p{ font-size: 1.25em;}
-ul{list-style: none;}
 
 
 button{
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 0, 0, 0.3);
     box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
     color: white;
     background-color: rgb(0, 170, 228);
@@ -38,9 +38,57 @@ button:hover{
 .container{
     max-width: 1400px;
     margin: auto;
+} 
+
+.color-17objetivos{ color: rgb(0, 170, 228);}
+
+header.header-section {
+    background-color: black;
+    color: white;
 }
 
-.color-17objetivos{ color: white;}
+.header-section a {
+    color: white;
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
+header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: white;
+    font-size: 1.6em;
+}
+
+header nav {
+    display: flex;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+header a {
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+header a:hover {
+    color: rgb(128, 208, 235);
+}
+
 
 #los-link .carta-17objetivos{
     background-position: center center;
@@ -54,54 +102,133 @@ button:hover{
     justify-content: center;
 }
 
-
-header{
-    background-image: url(/static/img/home/background.jpg);
-}
-
-header .logo{
-    margin: 0;
-    padding: 25px 30px;
-    font-weight: bold;
-    color: rgb(0, 170, 228);
-    font-size: 3em;
-}
-
-header .container{
+#los17 a {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
 }
 
-header nav{
-    display: flex;
+#los17 img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+#somos-ods .container{
     text-align: center;
-    padding-bottom: 25px;
-
-}
-
-header a {
-    padding: 5px 12px;
-    text-decoration: none;
-    font-weight: bold;
-    color:rgb(0, 170, 228);
+    padding: 50px 12px;
 }
 
 
-header a:hover{
-    color: rgb(128, 208, 235);
+
+#enlaces-de-interes{
+    background-color: rgb(0, 170, 228);
+    color: white;
+    text-align: center;
 
 }
+
+#enlaces-de-interes .programas{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#enlaces-de-interes .carta{
+    background-position: center center;
+    background-size: cover;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 15px;
+    max-width: 300px;
+}
+
+#enlaces-de-interes .container{
+    padding: 100px 12px;
+}
+
+#enlacess-de-interes h2{
+    margin-top: none;
+    font-size: 3.5em;
+}
+
+#enlaces-de-interes p{
+    display: none;
+
+}
+
+#programas{
+    background-color: rgb(0, 170, 228);
+    color: white;
+    text-align: center;
+}
+
+#programas .container{
+    padding: 150px 12px;
+}
+
+#programas p{
+    display: none;
+}
+
+#programas .carta{
+    background-position: center center;
+    background-size: cover;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 15px;
+}    
+    
+.carta:first-child{
+    background-image: linear-gradient(
+        0deg,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    )
+    ,url("/static/img/home/carta-noticias.jpg");
+
+}
+
+.carta:nth-child(2){
+    background-image: linear-gradient(
+        0deg,
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    )
+    ,url("/static/img/home/carta-unete.jpg");
+}
+
+.carta:nth-child(3) {
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+    )
+    ,url("/static/img/home/carta-recursos.jpg");
+    background-position: center center;
+    background-size: cover;
+    padding: 50px;
+    margin: 20px;
+    border-radius: 15px;
+    max-width: 300px;
+}
+  
+
 
 
 #hero{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     flex-direction: column;
-    height: 90vh;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     background-image: linear-gradient(
         0deg,
         rgba(0,0,0,0.5),
@@ -110,8 +237,8 @@ header a:hover{
     ,url(/static/img/home/hero.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center;
-
+    color: white;
+    height: 80vh;
 }
 
 #hero h1{
@@ -122,108 +249,118 @@ header a:hover{
     font-size: 1.75em;
 }
 
-#somos-ods .container{
-    text-align: center;
-    padding: 200px 12px;
-    background-color: rgb(0, 170, 228);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+.pie{
+    background-color: #f3faff;
 }
 
-#puntos-de-interes{
-    background-color: rgb(0, 170, 228);
+#rectangulo .logo{
+    width: 5%;
+    height: 5%;
+}
+
+span{
+    font-size: 10px;
+}
+
+.fb{
+    background: rgb(59, 89, 152);
+    padding: 10px;
+    border-radius: 50px;
     color: white;
-    text-align: center;
-
 }
 
-#puntos-de-interes .container{
-    text-align: center;
-    padding: 150px 12px;
+.twt{
+    background: rgb(0, 172, 238);
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
 }
 
-#puntos-de-interes h2{
-    margin: none;
-    font-size: 3.5em;
+.ig{
+    background: rgb(221, 42, 123);
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
 }
 
-#puntos-de-interes p{
-    display: none;
-
+.li{
+    background: rgb(0, 119, 181);
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
 }
 
-#puntos-de-interes .carta{
-    background-position: center center;
-    background-size: cover;
-    padding: 50px;
-    margin: 20px;
-    border-radius: 15px;
+.yt{
+    background: rgb(196, 48, 43);
+    padding: 10px;
+    border-radius: 50px;
+    color: white;
 }
 
-.carta:first-child{
-    background-image: linear-gradient(
-        0deg,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
-    )
-    ,url("/static/img/home/carta-unete.jpg")
+.rectangulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.carta:nth-child(2){
-    background-image: linear-gradient(
-        0deg,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
-    )
-    ,url("/static/img/home/carta-noticias.jpg")
+.section{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
 }
 
-.carta:nth-child(3){
-    background-image: linear-gradient(
-        0deg,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
-    )
-    ,url("/static/img/home/carta-recursos.png")
-}
-
-#contactos .container{
-    text-align: center;
-    padding: 200px 12px;
-}
-
-#contactos{
+.title-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: rgb(0, 170, 228);
-    color: white;
-    height: 50vh;
+    align-items: flex-start;
+    padding: 10px;
 }
 
-#contactos h2{
-    font-size: 9vw;
-}
-
-footer{
-    background-color: white;
-}
-
-footer p{
-    margin: 0;
-    padding: 12px;
+.title-container h6 {
     color: black;
+    margin-bottom: 5px;
 }
 
-footer .container{
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+.title-container a {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
 }
+
+.derechos{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background:  #f3faff;
+}
+
+footer {
+    font-size: 14px;
+}
+
+.rectangulo {
+    padding: 3px;
+}
+
+.section {
+    padding: 5px;
+}
+
+.title-container h6 {
+    font-size: 14px;
+}
+
+.title-container a {
+    font-size: 14px;
+    padding: 2px;
+}
+
+.derechos {
+    padding: 1px;
+}
+
+
+
 
 @media (min-width: 720px){
     header{
@@ -241,6 +378,9 @@ footer .container{
         padding-right: 20px;
     }
 
+    #somos-ods h2{
+        margin-top: 0px;
+    }
 
     #somos-ods .img-container{
         background-image: url(/static/img/home/banner-ods.jpg);
@@ -250,12 +390,67 @@ footer .container{
         width: 100%;
     }
 
-    #somos-ods h2{
-        margin-top: 0px;
+    #los-link .los17 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+    }
+      
+    #los-link a {
+        width: 100%;
     }
 
-    
+    #enlaces-de-interes h2{
+        font-size: 5em;
+    }
 
+    #enlaces-de-interes .programas{
+        display: flex;
+        justify-content: center;
+    }
 
+    #enlaces-de-interes h2 {
+        font-size: 4em;
+    }
+
+    #enlaces-de-interes h3{
+        margin-top: 0;
+    }
+
+    #enlaces-de-interes p{
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .carta:first-child{
+        background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+        )
+        ,url("/static/img/home/carta-noticias.jpg");
+    }
+
+    .carta:nth-child(2){
+        background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+        )
+        ,url("/static/img/home/carta-unete.jpg");
+    }
+
+    .carta:nth-child(3){
+        background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+        )
+        ,url("/static/img/home/carta-recursos.jpg");
+    }
+
+    footer .container{
+        justify-content: flex-end;
+    }
 }
 

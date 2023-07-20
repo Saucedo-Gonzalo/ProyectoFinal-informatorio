@@ -2,106 +2,91 @@
 {%extends 'base.html'%}
 {%load static %}
 {%block contenido%}
-   <section id="hero">
-        <h1>Suscríbete a nuestro portal <br>y ayúdanos a ayudar</h1>
-        <a href="{%url 'usuarios:Registrarse'%}"><button>SUSCRIBETE</button></a>
-   </section>
+
+<section id="somos-ods">      
+
+    <div class="container">
+
+        <div class="img-container"></div>
+
+        <h2>Los 17 objetivos de <span class="color-17objetivos">ODS 2030</span></h2>
+        <p>Clickea sobre el obtivo que te interese!
+        </p>
+    </div>
+</section>
 
 
+<section id="los-link">
+    
+    <div class="carta-17objetivos">
 
-    <section id="somos-ods">      
-
-        <div class="container">
-
-            <div class="img-container"></div>
-            <h2>Los 17 objetivos de <span class="color-17objetivos">ODS 2030</span></h2>
-            <p></p>
-            <section id="los-link">
-        
-                <div class="carta-17objetivos">
-                        <div class="los17">
-                            
-                          <a href="pag-objetivo1" class="button"><button>Objetivo 1</button></a>
-                          <a href="pag-objetivo2" class="button"><button>Objetivo 2</button></a>
-                          <a href="pag-objetivo3" class="button"><button>Objetivo 3</button></a>
-                          <a href="pag-objetivo4" class="button"><button>Objetivo 4</button></a>
-                          <a href="pag-objetivo5" class="button"><button>Objetivo 5</button></a>
-                          <a href="pag-objetivo6" class="button"><button>Objetivo 6</button></a>
-                          <a href="pag-objetivo7" class="button"><button>Objetivo 7</button></a>
-                          <a href="pag-objetivo8" class="button"><button>Objetivo 8</button></a>
-                          <a href="pag-objetivo9" class="button"><button>Objetivo 9</button></a>
-                          <a href="pag-objetivo10" class="button"><button>Objetivo 10</button></a>
-                          <a href="pag-objetivo11" class="button"><button>Objetivo 11</button></a>
-                          <a href="pag-objetivo12" class="button"><button>Objetivo 12</button></a>
-                          <a href="pag-objetivo13" class="button"><button>Objetivo 13</button></a>
-                          <a href="pag-objetivo14" class="button"><button>Objetivo 14</button></a>
-                          <a href="pag-objetivo15" class="button"><button>Objetivo 15</button></a>
-                          <a href="pag-objetivo16" class="button"><button>Objetivo 16</button></a>
-                          <a href="pag-objetivo17" class="button"><button>Objetivo 17</button></a>
-                        </div>
-                </div>
-        
-            </section>
+        <div class="los17">
+            <a href="pag-objetivo1"><img src="{% static 'img/objetivos/1ods.jpg' %}" alt="Objetivo 1"></a>
+            <a href="pag-objetivo2"><img src="{% static 'img/objetivos/2ods.jpg' %}" alt="Objetivo 2"></a>
+            <a href="pag-objetivo3"><img src="{% static 'img/objetivos/3ods.jpg' %}" alt="Objetivo 3"></a>
+            <a href="pag-objetivo4"><img src="{% static 'img/objetivos/4ods.jpg' %}" alt="Objetivo 4"></a>
+            <a href="pag-objetivo5"><img src="{% static 'img/objetivos/5ods.jpg' %}" alt="Objetivo 5"></a>
+            <a href="pag-objetivo6"><img src="{% static 'img/objetivos/6ods.jpg' %}" alt="Objetivo 6"></a>
+            <a href="pag-objetivo7"><img src="{% static 'img/objetivos/7ods.jpg' %}" alt="Objetivo 7"></a>
+            <a href="pag-objetivo8"><img src="{% static 'img/objetivos/8ods.jpg' %}" alt="Objetivo 8"></a>
+            <a href="pag-objetivo9"><img src="{% static 'img/objetivos/9ods.jpg' %}" alt="Objetivo 9"></a>
+            <a href="pag-objetivo10"><img src="{% static 'img/objetivos/10ods.jpg' %}" alt="Objetivo 10"></a>
+            <a href="pag-objetivo11"><img src="{% static 'img/objetivos/11ods.jpg' %}" alt="Objetivo 11"></a>
+            <a href="pag-objetivo12"><img src="{% static 'img/objetivos/12ods.jpg' %}" alt="Objetivo 12"></a>
+            <a href="pag-objetivo13"><img src="{% static 'img/objetivos/13ods.jpg' %}" alt="Objetivo 13"></a>
+            <a href="pag-objetivo14"><img src="{% static 'img/objetivos/14ods.jpg' %}" alt="Objetivo 14"></a>
+            <a href="pag-objetivo15"><img src="{% static 'img/objetivos/15ods.jpg' %}" alt="Objetivo 15"></a>
+            <a href="pag-objetivo16"><img src="{% static 'img/objetivos/16ods.jpg' %}" alt="Objetivo 16"></a>
+            <a href="pag-objetivo17"><img src="{% static 'img/objetivos/17ods.jpg' %}" alt="Objetivo 17"></a>
         </div>
-    </section>
 
-    <section id="puntos-de-interes">
-        <div class="container">
-            <h2>Enlaces de Interés</h2>
+    </div>
+    
+</section>
 
-            <div class="3-banners">
-                <div class="carta">
-                    <h3>¡Únete a nosotros!</h3>
-                    <p>Descubre cómo puedes ser parte del cambio y sumarte a la 
-                        implementación de los Objetivos de Desarrollo Sostenible 
-                        (ODS) 2030. Desde contribuir a la erradicación de la pobreza 
-                        hasta promover la igualdad de género y la acción climática, 
-                        los ODS nos brindan una oportunidad única para crear un 
-                        mundo mejor. Explora cómo tus acciones diarias pueden marcar 
-                        la diferencia y cómo puedes colaborar con comunidades, 
-                        organizaciones y gobiernos para alcanzar estas metas globales.</p>
-                    <button>Más Info</button>
-                </div>
 
-                <div class="carta">
-                    <h3>Ultimas Noticias</h3>
-                    <p>Explora las últimas noticias sobre los avances y 
-                        logros de la implementación de los Objetivos de 
-                        Desarrollo Sostenible (ODS) 2030 en la provincia 
-                        de Chaco. Desde iniciativas para combatir la pobreza 
-                        hasta proyectos innovadores de energías renovables, 
-                        descubre cómo Chaco está liderando el camino hacia un 
-                        futuro sostenible. Acompaña a las comunidades locales, 
-                        organizaciones y autoridades en su compromiso para alcanzar 
-                        las metas de los ODS, y conoce las historias inspiradoras 
-                        de cambio y transformación que están ocurriendo en nuestra 
-                        querida provincia.</p>
-                    <button>Más Info</button>
-                </div>
+<section id="enlaces-de-interes">
 
-                <div class="carta">
-                    <h3>Recursos y Herramientas</h3>
-                    <p>Resumen recursos y herramientas</p>
-                    <button>Más Info</button>
-                </div>
+    <div class="container">
+        <h2>Enlaces de Interés</h2>
+
+        <div class="programas">
+
+            <div class="carta">
+                <h3>¡Únete a nosotros!</h3>
+                <p>Explora cómo tus acciones diarias pueden marcar 
+                la diferencia y cómo puedes colaborar.</p>
+                <form action ="link-a-la-pag"><button>Más Info</button>
+                </form>
+            </div>
+
+            <div class="carta">
+                <h3>Ultimas Noticias</h3>
+                <p>Conoce las historias inspiradoras 
+                de cambio y transformación que están ocurriendo en nuestra 
+                querida provincia.</p>
+                <form action ="link-a-la-pag"><button>Más Info</button>
+                </form>
+            </div>
+
+            <div class="carta">
+                <h3>Recursos y Herramientas</h3>
+                <p>Resumen recursos y herramientas para una mayor comprensión
+                de esta organización, con datos y páginas web donde puedes informarte
+                más</p>
+                <form action ="link-a-la-pag"><button>Más Info</button>
+                </form>
             </div>
 
         </div>
-    </section>
 
- 
+    </div>
 
-    <section id="contactos">
+</section>
 
-        <h2>Contactos</h2>
-
-    </section>
-
-
-<!--recorda che si un boton va a un link debo hacer esto:
-<form action="el link para que vaya a este sitio">
-    <button>MÁS INFO</button>
-</form>
--->
+<section id="hero">
+    <h1>Suscríbete a nuestro portal <br>y ayúdanos a ayudar</h1>
+    <a href="{%url 'usuarios:Registrarse'%}"><button>SUSCRIBETE</button></a>
+</section>
 
 {%endblock contenido%}
