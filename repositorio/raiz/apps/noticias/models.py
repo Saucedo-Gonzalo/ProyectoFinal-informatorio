@@ -29,6 +29,12 @@ class Noticia(models.Model):
     
     def obtener_mis_comentarios(self):
         return self.mis_comentarios.all()
+    
+    def delete(self, *args, **kwargs):
+        # Antes de eliminar la noticia, también eliminamos la imagen asociada (si existe)
+        if self.imagen:
+            self.imagen.delete()
+        super().delete(*args, **kwargs)
        
 
 class Comentario(models.Model):
