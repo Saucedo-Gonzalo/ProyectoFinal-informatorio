@@ -1,69 +1,78 @@
-{%load static %}
+{% block contenido %}
 
-{%block contenido%}
+{% load static %}
 
-<style>
-  .errorlist{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    color: red;
-    font-size: 12px;
-  }
-</style>
-<body class = "my-body" style="text-align:center;  margin-top: 100px;">
-  <div class="form-body" style="
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>BLOG</title> 
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="{% static 'css/loguearse.css' %}">
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+	
+</head>  
+<body>
 
-      
-      align-items: center;
-      justify-content: center;  
-      margin-top: 110px;
-      height: 640px;
-      width: 400px;
-      border-radius: 50px;
-      border: solid 1px #2668b4;
-      margin:auto ;">
-      
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAB6CAMAAABHh7fWAAAAZlBMVEX///8AAADl6u7f39+QkJC7u7vJycn3+frl5eXq6ur7/P3t8PPb29sLCwvw8/Xz8/NdXV08PDzT09OXl5ehoaGsrKyHh4ckJCRQUFB9fX3Dw8NnZ2dBQUK0tLQvLy8ZGRlxcXFISEiWXli3AAACk0lEQVRoge2a63aiMBCAzVIkhDsCihXF93/JDbK1QskEkkw8PZvvp/b0IzBkLnG3czgcDofD4XA4fimhxwnte+MmPxLOMW9iq+LzibxwOlsTZzmZkWd2zPFcPGDlrpdLZkJKfPPimq2sOytE6gL7eTciMyENrtkTmwnxUNUtpG4xzSyB1AlDVJ8hMyGYu9oBVh8Q1Z+w+hNRLXypRy6I6iOsPiKqr7C6QFT/yJZTckT1B6z+QFT7sNpHVIewGrVGPEHmE6ZZVKKMIBcqQIxj7mUDnjB3JbjpmtOJ1Jjh/Q9B9sLMWk+qJXNlw7wY5haq8JFgVpc2mJXRnLB6vmV5ZbvRZbTs6rorqc0Vv5OAejNogG+lVSuoz4q2QtzOsgrsAPheihRxFGx6vmipcTE7SFb8XPnBcMh7l3XigYvRZy7pteYY7L3qbWZCalPmxVQFYyiRCYsDiM6EOV4Z2lOMlEuS7lKEgf5L4UGPaD9upmomRHdrkYwwIHQLRaUYG0n0zBu3sSl6m9qqbCVCa4QnHsau4aJTu0j6aRk6hQPY08rRaQwmA4z7imi/Tp6QTgf4mi27XSCZXRHSTwNTJ3e+7qKhdID0WObekPolXyYKaq3M+d3XKag1TySegbZdrT1moFc19dVEQd6oqA0d/5T3req7sSkDq25bXq5bZbIBCdvhsHaNOk5ajJ5vjXqHc74oVSOeNvk9JO5xB4aZ3y8mkaL3LZzcZ17d58XtS3or8r72LP1i4OGncVzu92UcU4vW/xPGWDCDf4Tl4v89SqPoj5SI87gUfStXyn2Cqwg0ynB17bdezcx0xQOKdz5I37Xqx8qDVPGuR6mZafEQ42nKYxy8Dv41/yMz8e1wOBwOh8PxNv4CKrMhNYNuUdQAAAAASUVORK5CYII=" alt="user-login">
-    
-      
-      
-    <p class ="text" style="margin-top: 10;">
-          Completa los siguientes datos
-    </p>
+ <form method="POST" class="formulario">{%csrf_token%}
+    {{form.errors}}
 
+    <h1>Registrate</h1>
 
+    <div class="contenedor">
 
+        <div class="input-contenedor">
 
-      <form method="POST" style="display:flex; justify-content:center; flex-direction:column">
-       {%csrf_token%}
-       {{form.non_field.errors}}
-       {%for field in form%}
-        <div style="margin-top: 5px;">
-          <label  for="">{{field.label_tag}} </label>
-          <br>{{field}} <span>{{field.errors}}</span>
+            <i class="fas fa-user icon"></i>
+            <input type="text" name="first_name" placeholder="Nombre/s">
+            
         </div>
-        {% endfor %}
-        <span>Su contraseña debe tener almenos 8 caracteres <br> 
-          Su contraseña debe ser alfanumerica</span>
-       
-        <button type="submit" 
-        style="
-        margin-top: 15px;
-        border: solid 1px #2668b4;
-        width:100px;
-        align-self:center;
-        "
-        class="btn btn=success">
-        Registrate
-        </button>
-       
+        <div class="input-contenedor">
 
-      </form>
+            <i class="fas fa-user icon"></i>
+            <input type="text" name="last_name" placeholder="Apellido/s">
+            
+        </div>
+     
+        <div class="input-contenedor">
+
+            <i class="fas fa-user icon"></i>
+            <input type="text" name="username" placeholder="Nombre de Usuario">
+         
+        </div>
+         
+        <div class="input-contenedor">
+
+            <i class="fas fa-envelope icon"></i>
+            <input type="text" name="Email" placeholder="Correo Electronico">
+         
+        </div>
+         
+        <div class="input-contenedor">
+
+            <i class="fas fa-key icon"></i>
+            <input type="password" name="password1" placeholder="Contraseña" class="password-input">
+
+        </div>
+        
+        <div class="input-contenedor">
+
+            <i class="fas fa-key icon"></i>
+            <input type="password" name="password2" placeholder="Reingrese su contraseña" class="password-input">
+
+        </div>
+         
+        </div>
+
+        <input type="submit" value="Registrarme" class="button">
+        <p>Al registrarte, aceptas nuestras <a class="link" href="#">Condiciones de uso y Política de privacidad. </a></p>
+        <p>¿Ya tienes una cuenta?<a class="link" href="login.html"> Iniciar Sesion</a></p>
+
     </div>
-    
-</body>
 
-  
-      
-{%endblock contenido%}
+</form>
+
+</body>
+</html>
+{% endblock contenido %}
