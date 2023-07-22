@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTICIAS</title>
+</head>
+
+<body>
+  <!-- Agregar código para mostrar los mensajes -->
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <!-- Fin del código para mostrar los mensajes -->
+  
+    {% for noticia in noticias %}
+    <div>
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{noticia.creado}}</p>
+        <p>{{noticia.objetivo}}</p>
+        <p>autor: {{ noticia.autor }}</p>
+        <p>{{ noticia.cuerpo }}</p>       
+        <img src="{{noticia.imagen.url}}" alt="Imagen de la noticia">
+
+        <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Eliminar</button>
+        </form>
+        <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">Modificar</button>
+        </form>
+   
+    </div>
+{% endfor %}
+
+</body>
+
+</html>
