@@ -1,5 +1,5 @@
 from django import forms
-from .models import Noticia, Objetivo
+from .models import Noticia
 
 
 class NoticiaForm(forms.ModelForm):

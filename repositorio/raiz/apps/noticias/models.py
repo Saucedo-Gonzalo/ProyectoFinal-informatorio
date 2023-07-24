@@ -20,6 +20,7 @@ class Noticia(models.Model):
     imagen = models.ImageField(upload_to='noticias',null=True)
     objetivo=models.ForeignKey(Objetivo,on_delete=models.CASCADE,null=True)
     estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habiltado, deshabiliado')
+
     
     def __str__(self):
         return self.titulo

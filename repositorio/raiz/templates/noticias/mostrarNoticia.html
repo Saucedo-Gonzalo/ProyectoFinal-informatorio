@@ -50,6 +50,39 @@
             </div>
         </div>
     </div>
+
+<!-- Mostrar los comentarios -->
+<div class="comentarios">
+    <h3>Comentarios</h3>
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">   
+        <form method="POST" action="{% url 'noticias:agregarComentario' noticia.pk %}" >{% csrf_token %}
+            <!-- Campo oculto para el identificador de la noticia -->
+            <input type="hidden" name="pk" value="{{ noticia.pk }}">
+            <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label" style="font-size: 18px;">Usuario: {{user.username}}</label>
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentario"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-info">COMENTAR</button>
+        </form>
+    </div>
+
+    {% for comentario in comentarios %}
+    <div class="comentario">
+        <p>{{ comentario.texto }}</p>
+        <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
+        <div class="acciones-comentario">
+            <form action="{% url 'noticias:eliminarComentario' comentario.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="eliminar">Eliminar</button>
+            </form>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 </section>
 
 

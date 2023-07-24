@@ -9,10 +9,12 @@ urlpatterns = [
 
     #create
     path('agregarNoticia/', views.agregarNoticia, name='agregarNoticia'),
+    path('agregarComentario/<int:pk>/', views.agregarComentario, name='agregarComentario'),
 
     #read
     path('listarNoticias/', views.listarNoticias, name='listarNoticias'),
     path('mostrarNoticia/<int:pk>/', views.mostrarNoticia, name='mostrarNoticia'),
+
     # path('listarPorFecha/', views.listarPorFecha, name='listarPorFecha'),
     # path('listarPorObjetivo/<int:pk>', views.listarPorObjetivo, name='listarPorObjetivo'),
 
@@ -23,6 +25,6 @@ urlpatterns = [
 
     #delete
     path('eliminarNoticia/<int:pk>/', views.eliminarNoticia, name='eliminarNoticia'),
-    # path('eliminarComentario/<int:pk>', views.eliminarComentario, name='eliminarComentario'),
+    path('eliminarComentario/<int:pk>', views.eliminarComentario, name='eliminarComentario'),
 
 ]

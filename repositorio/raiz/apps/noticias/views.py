@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib import messages
 
+from django.urls import reverse
 from .models import Noticia,Comentario
 
 #vistas CRUD
@@ -28,6 +29,15 @@ def agregarNoticia(request):
         form = NoticiaForm()
     return render(request, 'noticias/agregarNoticia.html', {'form': form})
 
+
+def agregarComentario(request,pk):
+	texto = request.POST.get('comentario')
+	noticia = Noticia.objects.get(pk = pk)
+	c = Comentario.objects.create(noticia = noticia, texto = texto, usuario = request.user)
+	return redirect('noticias:mostrarNoticia' , pk=pk)
+
+
+
 #read
 def listarNoticias(request):
     noticias = Noticia.objects.all()   # Muestra todas las noticias
@@ -36,7 +46,8 @@ def listarNoticias(request):
 
 def mostrarNoticia(request, pk): #viene como parametro el pk que ingreso en la url
     noticia = get_object_or_404(Noticia, pk=pk)   # Muestra solo una noticia por su pk
-    context = {'noticia': noticia}
+    comentarios = noticia.mis_comentarios.all()  # Obtener todos los comentarios asociados a esta noticia
+    context = {'noticia': noticia, 'comentarios': comentarios}
     return render(request, 'noticias/mostrarNoticia.html', context)
 
 #update
@@ -87,6 +98,14 @@ def eliminarNoticia(request, pk):
     noticia.delete()
     messages.success(request, 'Noticia eliminada exitosamente.')
     return redirect('noticias:listarNoticias')
+
+
+def eliminarComentario(request, pk):
+    comentario = get_object_or_404(Comentario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
+    noticia_pk = comentario.noticia.pk  # Obtenemos el pk de la noticia asociada al comentario
+    comentario.delete()
+    messages.success(request, 'comentario eliminado exitosamente.')
+    return redirect(reverse('noticias:mostrarNoticia', kwargs={'pk': noticia_pk}))
 
 #__________________________________________________________________________________________
 
