@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%load static %}
+{%block contenido%}
+
+<link rel="stylesheet" href="{% static 'css/destacado.css' %}">
+
+
+<section id="destacado">
+    <div class="container2">
+        <div class="noticia noticia-destacada">
+            <h2>{{noticia.titulo}} </h2>
+            <div class="fecha">{{noticia.autor}} | {{noticia.creado}}</div>
+            <div class="contenido">
+                <div class="imagen-macro">
+                    <img src="{{noticia.imagen.url}}" alt="Imagen Macro">
+                    <div class="datos-autor">
+                        <p>Objetivo relacionado: {{noticia.objetivo}} </p>
+                    </div>
+                </div>
+                <div class="columna-texto">
+                    <div class="columna-izquierda">
+                        <h4>---</h4>
+                        <p>{{noticia.cuerpo}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="acciones">
+            <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
+                <!-- <form action="" method="post">
+                    <button type="submit" class="cargar">Cargar</button>
+                </form> -->
+
+            <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
+                {% csrf_token %}
+                <button type="submit" class="editar">Editar</button>
+            </form>
+
+            <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="eliminar">Eliminar</button>
+            </form>
+
+            <form action="{% url 'noticias:mostrarNoticia' noticia.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Ir a la noticia</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+{%endblock contenido%}

@@ -9,37 +9,89 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-color: #f8f8f8;
+    background-color: #f2f2f2;
 }
 
-h1 {
-    font-size: 2.5em;
+body {
+    font-family: Arial, sans-serif;
+}
+
+.noticias-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.noticia {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    width: calc(33.33% - 20px);
+    min-width: 300px;
+}
+
+.noticia h2 {
+    font-size: 30px;
+    color: #0099cc;
+    margin: 0;
+}
+
+.noticia .fecha {
+    color: #666;
+    font-size: 12px;
+}
+
+.noticia .contenido {
+    margin-bottom: 10px;
+}
+
+.noticia .acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.noticia .acciones button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.noticia .imagen {
+    text-align: center;
+}
+
+.noticia .imagen img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.noticia .comentarios {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.compartir a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
     font-weight: bold;
+    font-style: italic;
+    color: white;
+    background-color: #0099cc;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-h2 {
-    font-size: 2em;
-    font-weight: bold;
+.compartir a:hover {
+    background-color: #1284a3;
 }
-
-h3 {
-    font-size: 1.8em;
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 1.2em;
-    font-weight: light;
-}
-
-p {
-    font-size: 1em;
-}
-
-/* Eencabezado */
 
 header.header-section {
-    background-color: #333;
+    background-color: #0099cc;
     color: white;
     padding: 10px;
 }
@@ -49,14 +101,6 @@ header .container {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
-
-header .logo {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    color: white;
-    font-size: 1.4em;
 }
 
 header nav {
@@ -72,70 +116,7 @@ header a {
 }
 
 header a:hover {
-    color: rgb(128, 208, 235);
-}
-
-/* destacados */
-
-.noticias-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.noticia {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px);
-    min-width: 300px;
-}
-
-.noticia h2 {
-    margin: 0;
-}
-
-.noticia .fecha {
-    font-size: 12px;
-    color: #666;
-}
-
-.comentarios {
-    margin-top: 10px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-}
-
-.compartir {
-    margin-top: 10px;
-}
-
-.compartir a {
-    display: inline-block;
-    margin-right: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    font-style: italic;
-    color: white;
-    background-color: rgb(0, 170, 228);
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.compartir a:hover {
-    background-color: rgb(128, 208, 235);
-}
-
-/* footer */
-
-footer {
-    font-size: 14px;
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    color: #80d0eb;
 }
 
 .rectangulo {
@@ -160,7 +141,6 @@ footer {
     padding: 1px;
 }
 
-/* para el tema de fondo */
 
 body {
     background-image: url('media/background.jpg');
@@ -170,7 +150,6 @@ body {
     background-attachment: fixed;
 }
 
-/* responsivo : ) */
 
 @media screen and (max-width: 768px) {
     header .container {

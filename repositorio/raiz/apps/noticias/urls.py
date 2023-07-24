@@ -12,9 +12,10 @@ urlpatterns = [
 
     #read
     path('listar/', views.listarNoticias, name='listarNoticias'),
+    path('mostrarNoticia/<int:pk>/', views.mostrarNoticia, name='mostrarNoticia'),
     # path('listarPorFecha/', views.listarPorFecha, name='listarPorFecha'),
     # path('listarPorObjetivo/<int:pk>', views.listarPorObjetivo, name='listarPorObjetivo'),
-    # path('Mostrar/<int:pk>/', views.detalleNoticia.as_view(), name='detalleNoticia'),
+
 
     # #update
     path('modificarNoticia/<int:pk>/', views.modificarNoticia.as_view(), name='modificarNoticia'),

@@ -12,6 +12,8 @@ from django.contrib import messages
 from .models import Noticia,Comentario
 
 #vistas CRUD
+
+#Noticias
 #create
 def agregarNoticia(request):
     if request.method == 'POST':
@@ -30,7 +32,12 @@ def agregarNoticia(request):
 def listarNoticias(request):
     noticias = Noticia.objects.all()   # Muestra todas las noticias
     context = {'noticias': noticias}
-    return render(request, 'noticias/listarNoticias.html', context)
+    return render(request, 'noticias/noticias.html', context)
+
+def mostrarNoticia(request, pk): #viene como parametro el pk que ingreso en la url
+    noticia = get_object_or_404(Noticia, pk=pk)   # Muestra solo una noticia por su pk
+    context = {'noticia': noticia}
+    return render(request, 'noticias/mostrarNoticia.html', context)
 
 #update
 class modificarNoticia(UpdateView):
@@ -76,7 +83,10 @@ class modificarNoticia(UpdateView):
 
 #delete
 def eliminarNoticia(request, pk):
-    noticia = get_object_or_404(Noticia, pk=pk) #la funcion guarda en su variable pk el id de la universidad para luego borrarla
+    noticia = get_object_or_404(Noticia, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia.delete()
     messages.success(request, 'Noticia eliminada exitosamente.')
     return redirect('noticias:listarNoticias')
+
+#__________________________________________________________________________________________
+
