@@ -1,4 +1,4 @@
-
+{%extends 'baseLogin.html' %}
 {% block contenido %}
 
 {% load static %}
@@ -35,7 +35,7 @@
 
             <input type="submit" name="" value="Ingresar" class="button">
             <p>¿Olvidaste tu contraseña? <a class="link" href="link-recuperar-contraseña">Recuperar Contraseña</a></p>
-            <p>¿No tienes una cuenta? <a class="link" href="register.html">Registrate </a></p>
+            <p>¿No tienes una cuenta? <a class="link" href="{%url 'usuarios:Registrarse'%}">Registrate </a></p>
 
         </div>
 

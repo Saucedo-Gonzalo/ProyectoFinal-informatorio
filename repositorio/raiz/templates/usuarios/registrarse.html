@@ -1,3 +1,4 @@
+{%extends 'baseLogin.html' %}
 {% block contenido %}
 
 {% load static %}
@@ -67,7 +68,7 @@
 
         <input type="submit" value="Registrarme" class="button">
         <p>Al registrarte, aceptas nuestras <a class="link" href="#">Condiciones de uso y Política de privacidad. </a></p>
-        <p>¿Ya tienes una cuenta?<a class="link" href="login.html"> Iniciar Sesion</a></p>
+        <p>¿Ya tienes una cuenta?<a class="link" href="{%url 'usuarios:Loguearse'%}"> Iniciar Sesion</a></p>
 
     </div>
 

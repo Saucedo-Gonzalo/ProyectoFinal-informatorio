@@ -32,7 +32,7 @@ def agregarNoticia(request):
 def listarNoticias(request):
     noticias = Noticia.objects.all()   # Muestra todas las noticias
     context = {'noticias': noticias}
-    return render(request, 'noticias/noticias.html', context)
+    return render(request, 'noticias/listarNoticias.html', context)
 
 def mostrarNoticia(request, pk): #viene como parametro el pk que ingreso en la url
     noticia = get_object_or_404(Noticia, pk=pk)   # Muestra solo una noticia por su pk

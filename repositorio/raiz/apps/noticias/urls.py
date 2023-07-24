@@ -8,10 +8,10 @@ urlpatterns = [
     # #URL CRUD'S
 
     #create
-    path('agregar/', views.agregarNoticia, name='agregarNoticia'),
+    path('agregarNoticia/', views.agregarNoticia, name='agregarNoticia'),
 
     #read
-    path('listar/', views.listarNoticias, name='listarNoticias'),
+    path('listarNoticias/', views.listarNoticias, name='listarNoticias'),
     path('mostrarNoticia/<int:pk>/', views.mostrarNoticia, name='mostrarNoticia'),
     # path('listarPorFecha/', views.listarPorFecha, name='listarPorFecha'),
     # path('listarPorObjetivo/<int:pk>', views.listarPorObjetivo, name='listarPorObjetivo'),

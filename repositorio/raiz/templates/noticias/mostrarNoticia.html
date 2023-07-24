@@ -2,14 +2,16 @@
 {%load static %}
 {%block contenido%}
 
-<link rel="stylesheet" href="{% static 'css/destacado.css' %}">
+<link rel="stylesheet" href="{% static 'css/noticias/detalle.css' %}">
 
 
 <section id="destacado">
     <div class="container2">
         <div class="noticia noticia-destacada">
             <h2>{{noticia.titulo}} </h2>
-            <div class="fecha">{{noticia.autor}} | {{noticia.creado}}</div>
+            <div class="fecha"> 
+                {{noticia.autor}} | {{noticia.creado}}
+            </div>
             <div class="contenido">
                 <div class="imagen-macro">
                     <img src="{{noticia.imagen.url}}" alt="Imagen Macro">
@@ -25,25 +27,27 @@
                 </div>
             </div>
             <div class="acciones">
-            <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
+                <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
                 <!-- <form action="" method="post">
                     <button type="submit" class="cargar">Cargar</button>
                 </form> -->
 
-            <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
-                {% csrf_token %}
-                <button type="submit" class="editar">Editar</button>
-            </form>
+                <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="eliminar">Eliminar</button>
+                </form>
+                
+                <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit" class="editar">Editar</button>
+                </form>
 
-            <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="eliminar">Eliminar</button>
-            </form>
 
-            <form action="{% url 'noticias:mostrarNoticia' noticia.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Ir a la noticia</button>
-            </form>
+                <form action="{% url 'noticias:listarNoticias'%}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Volver</button>
+                </form>
+            </div>
         </div>
     </div>
 </section>

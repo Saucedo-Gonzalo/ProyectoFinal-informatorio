@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header-section {
+    background-color: #0099cc;
+    color: white;
+    padding: 10px;
+  }
+  
+  .header-section .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-section .logo {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: white;
+    font-size: 1.4em;
+  }
+  
+  .header-section nav {
+    display: flex;
+    text-align: center;
+  }
+  
+  .header-section a {
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .header-section a:hover {
+    color: #80d0eb;
+  }
+  
+  .noticias-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .noticia {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    flex: 1 1 calc(50% - 10px);
+    min-width: 300px;
+  }
+  
+  .noticia h2 {
+    color: #0099cc;
+    margin: 0;
+  }
+  
+  .noticia .fecha {
+    color: #666;
+    font-size: 12px;
+  }
+  
+  .noticia .contenido {
+    margin-bottom: 10px;
+  }
+  
+  .noticia .acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .noticia .acciones button {
+    display: inline-block;
+
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .noticia .imagen {
+    text-align: center;
+  }
+  
+  .noticia .imagen img {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 10px;
+  }
+  
+  .noticia .comentarios {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  
+  .compartir a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    background-color: #0099cc;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .compartir a:hover {
+    background-color: #1284a3;
+  }
+ 
+  @media screen and (max-width: 768px) {
+    .header-section .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .noticia {
+      flex: 1 1 100%;
+    }
+  }
+  
+  
