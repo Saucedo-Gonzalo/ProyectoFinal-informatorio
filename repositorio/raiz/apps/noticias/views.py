@@ -70,7 +70,7 @@ class modificarNoticia(UpdateView):
 
     def get_form(self, form_class=None): #metodo que nos da un select para seleccionar habilitado o deshabilitado
         form = super().get_form(form_class) #metodo para obtener el formulario original generado por Django.
-        form.fields['estado'].widget = forms.Select(choices=[('', 'Seleccione'),('habilitado', 'Habilitado'), ('deshabilitado', 'Deshabilitado')]) # Asignamos el widget forms.Select al campo 'estado'
+        form.fields['estado'].widget = forms.Select(choices=[('habilitado', 'Habilitado'), ('deshabilitado', 'Deshabilitado')]) # Asignamos el widget forms.Select al campo 'estado'
         return form
     
 
