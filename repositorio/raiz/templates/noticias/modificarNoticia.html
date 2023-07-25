@@ -1,69 +1,64 @@
 {%load static %}
 {%block contenido%}
 
+
   <head>
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  </head>
-  <!-- Agregar código para mostrar los mensajes -->
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-<!-- Fin del código para mostrar los mensajes -->
+    <script src="{% static 'js/scriptsBlog.js' %}"></script>
 
-<div class="container">
-  <form method="post" enctype="multipart/form-data" class="styled-form">
+  </head>
+
+<div class="container"> <!-- Agrega un contenedor para centrar el formulario -->
+  <div class="text-center">
+    <h2><b>EDICIÓN</b></h2>
+  </div>
+  <form method="post" enctype="multipart/form-data" id="formulario">
+
     {% csrf_token %}
 
-    <div class="mb-3 row">
-      <div class="col-lg-9">
-        <label for="titulo" >Título:</label>
-        <input type="text" class="form-control" id="titulo" placeholder="Título" value="{{ object.titulo }}" aria-label="readonly input example" readonly>
+    <!-- Título -->
+    <div class="mb-3">
+      <label for="{{ form.titulo.id_for_label }}" class="form-label">Título</label>
+      <input type="text" class="form-control" id="{{ form.titulo.auto_id }}" name="{{ form.titulo.name }}" value="{{ object.titulo }}">
+    </div>
 
+    <!-- Cuerpo -->
+    <div class="mb-3">
+      <label for="{{ form.cuerpo.id_for_label }}" class="form-label">Cuerpo</label>
+      <textarea class="form-control" id="{{ form.cuerpo.auto_id }}" name="{{ form.cuerpo.name }}" rows="10">{{ object.cuerpo }}</textarea>
+    </div>
+
+    <!-- Imagen -->
+    <div class="mb-3">
+      <div class="mb-3">
+        <label class="form-label">Imagen Actual: </label>
+        <img src="{{ object.imagen.url }}" alt="Imagen Actual" class="img-thumbnail">
       </div>
+      <label for="{{ form.imagen.id_for_label }}" class="form-label">Modificar imagen: </label>
+      <input type="file" class="form-control" id="{{ form.imagen.auto_id }}" name="{{ form.imagen.name }}">
+    </div>
+
+    <!-- Objetivo -->
+    <div class="mb-3">
+
+      <label for="{{ form.objetivo.id_for_label }}" class="form-label">Objetivo</label>
+      {{ form.objetivo }}
+    </div>
+
+    <!-- Estado -->
+    <div class="mb-3">
+      <label for="{{ form.estado.id_for_label }}" class="form-label">Estado</label>
+      {{ form.estado }}
     </div>
 
     <div class="mb-3">
-      <div class="col-lg-9"></div>
-        <label for="cuerpo" class="form-label">Cuerpo:</label>
-        <textarea class="form-control" id="cuerpo" placeholder="Ingrese el cuerpo de la noticia" rows="15" >{{ object.cuerpo }}</textarea>
-      </div>
+      <a href="{% url 'noticias:mostrarNoticia' object.pk %}" class="btn btn-outline-primary">Volver</a>
+      <button type="button" class="btn btn-secondary" onclick="cancelarEdicion()" formnovalidate>Cancelar</button>
+      <input type="button" value="Guardar cambios" class="btn btn-primary" onclick="confirmarGuardarCambios()">
+      
     </div>
-
-    
-    <div class="mb-3">
-      <label for="imagen" class="form-label">Imagen: </label>
-      <input class="form-control" type="file" id="imagen" placeholder="{{ object.imagen }}" value="{{ form.imagen.value }}">
-    </div>
-
-
-
-    <div class="form-group">
-      <label for="{{ form.imagen.id_for_label }}">Imagen</label>
-      <div class="custom-file">
-          <label class="custom-file-label" for="{{ form.imagen.id_for_label }}">{{ form.imagen.value }}</label>
-          {{ form.imagen }}
-      </div>
-    </div>
-    
-    <!-- Renderizar otros campos -->
-    
-    <div class="form-group">
-        <label for="{{ form.objetivo.id_for_label }}">Objetivo</label>
-        {{ form.objetivo }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.estado.id_for_label }}">estado</label>
-        {{ form.estado }}
-    </div>
-
-    <!-- Renderizar otros campos ... -->
-
-    <input type="submit" value="Guardar cambios">
   </form>
 </div>
+
+
 {% endblock %}

@@ -16,10 +16,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
 .noticias-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+}
+.noticia .contenido p {
+    text-align: justify;
 }
 
 .noticia {
@@ -34,6 +38,7 @@ body {
 }
 
 .noticia h2 {
+    /* text-align: justify; */
     font-size: 30px;
     color: #0099cc;
     margin: 0;
