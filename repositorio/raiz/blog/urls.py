@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name = 'home'),
     path('usuarios/',include('apps.usuarios.urls')),
+    path('objetivos/p<int:numObjetivo>.html', views.pagObjetivo, name='pagObjetivo'),
     path('noticias/',include('apps.noticias.urls')),
 
     
