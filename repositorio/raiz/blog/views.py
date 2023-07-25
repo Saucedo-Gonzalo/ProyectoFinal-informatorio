@@ -11,3 +11,6 @@ def Home(request):
 def pagObjetivo(request, numObjetivo):
     template_name = f'objetivos/p{numObjetivo}.html'
     return render(request, template_name)
+
+def Contacto(request):
+    return render(request,'contacto.html')
