@@ -1,12 +1,9 @@
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{%load static %}
+{%block contenido%}
+
+  <head>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  </head>
   <!-- Agregar código para mostrar los mensajes -->
 {% if messages %}
 <ul class="messages">
@@ -17,13 +14,56 @@
 {% endif %}
 <!-- Fin del código para mostrar los mensajes -->
 
-<h2>Editar {{ object }}</h2>
-<form method="post" enctype="multipart/form-data">
+<div class="container">
+  <form method="post" enctype="multipart/form-data" class="styled-form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Guardar cambios">
-</form>
 
-</body>
-</html>
+    <div class="mb-3 row">
+      <div class="col-lg-9">
+        <label for="titulo" >Título:</label>
+        <input type="text" class="form-control" id="titulo" placeholder="Título" value="{{ object.titulo }}" aria-label="readonly input example" readonly>
+
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="col-lg-9"></div>
+        <label for="cuerpo" class="form-label">Cuerpo:</label>
+        <textarea class="form-control" id="cuerpo" placeholder="Ingrese el cuerpo de la noticia" rows="15" >{{ object.cuerpo }}</textarea>
+      </div>
+    </div>
+
+    
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen: </label>
+      <input class="form-control" type="file" id="imagen" placeholder="{{ object.imagen }}" value="{{ form.imagen.value }}">
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="{{ form.imagen.id_for_label }}">Imagen</label>
+      <div class="custom-file">
+          <label class="custom-file-label" for="{{ form.imagen.id_for_label }}">{{ form.imagen.value }}</label>
+          {{ form.imagen }}
+      </div>
+    </div>
+    
+    <!-- Renderizar otros campos -->
+    
+    <div class="form-group">
+        <label for="{{ form.objetivo.id_for_label }}">Objetivo</label>
+        {{ form.objetivo }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.estado.id_for_label }}">estado</label>
+        {{ form.estado }}
+    </div>
+
+    <!-- Renderizar otros campos ... -->
+
+    <input type="submit" value="Guardar cambios">
+  </form>
+</div>
 {% endblock %}
