@@ -10,14 +10,14 @@ from .forms import RegistroForm
 # Create your views here.
 
 
-class Registrarse(CreateView):
+class registrarse(CreateView):
     form_class = RegistroForm #toma el modelo definido en forms.
     
-    success_url = reverse_lazy('usuarios:Loguearse') #redirige al login luego del registro exitoso.
+    success_url = reverse_lazy('usuarios:loguearse') #redirige al login luego del registro exitoso.
 	
     template_name = 'usuarios/registrarse.html'
 
 
 # Create your views here.
-def Loguearse(request):
+def loguearse(request):
     return render(request,'usuarios/loguearse.html')

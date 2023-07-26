@@ -4,7 +4,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.views.generic import UpdateView, DeleteView, CreateView
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import NoticiaForm
+from .forms import NoticiaAgregarForm, NoticiaForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib import messages
@@ -13,20 +13,22 @@ from django.urls import reverse
 from .models import Noticia,Comentario
 
 #vistas CRUD
-
 #Noticias
 #create
+
+
 def agregarNoticia(request):
     if request.method == 'POST':
-        form = NoticiaForm(request.POST, request.FILES)
+        form = NoticiaAgregarForm(request.POST, request.FILES)
         if form.is_valid():
-            noticia = form.save(commit=False)  # No guardar aún la instancia de Noticia en la base de datos
+
+            noticia = form.save(commit=False)
             noticia.autor = request.user  # Asignar el usuario actual como autor de la noticia
-            noticia.save()  # Ahora sí guardamos la instancia de Noticia con el autor asignado
+            noticia.save()
             messages.success(request, 'Noticia modificada exitosamente.')
             return redirect('noticias:listarNoticias')
     else:
-        form = NoticiaForm()
+        form = NoticiaAgregarForm()
     return render(request, 'noticias/agregarNoticia.html', {'form': form})
 
 

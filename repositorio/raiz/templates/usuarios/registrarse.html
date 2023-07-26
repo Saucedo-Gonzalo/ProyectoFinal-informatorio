@@ -16,7 +16,7 @@
 </head>  
 <body>
 
- <form method="POST" class="formulario">{%csrf_token%}
+ <form method="post" class="formulario">{%csrf_token%}
     {{form.errors}}
 
     <h1>Registrate</h1>
@@ -66,9 +66,9 @@
          
         </div>
 
-        <input type="submit" value="Registrarme" class="button">
+        <input method="get" type="submit" value="Registrarme" class="button">
         <p>Al registrarte, aceptas nuestras <a class="link" href="#">Condiciones de uso y Política de privacidad. </a></p>
-        <p>¿Ya tienes una cuenta?<a class="link" href="{%url 'usuarios:Loguearse'%}"> Iniciar Sesion</a></p>
+        <p>¿Ya tienes una cuenta?<a class="link" href="{%url 'usuarios:loguearse'%}"> Iniciar Sesion</a></p>
 
     </div>
 

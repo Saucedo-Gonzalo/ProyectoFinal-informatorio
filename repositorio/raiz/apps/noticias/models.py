@@ -6,7 +6,7 @@ class Objetivo(models.Model):
     nombre = models.CharField(max_length=60)
     descripcion= models.CharField(max_length=250,null=True,blank=True)
     imagen= models.ImageField(upload_to='noticias',null=True)
-    estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habiltado, deshabiliado')
+    estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habilitado, deshabilitado')
 
     
     def __str__(self):
@@ -19,7 +19,7 @@ class Noticia(models.Model):
     autor= models.CharField(max_length=50, null=True, blank=True)
     imagen = models.ImageField(upload_to='noticias',null=True)
     objetivo=models.ForeignKey(Objetivo,on_delete=models.CASCADE,null=True)
-    estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habiltado, deshabiliado')
+    estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habilitado, deshabilitado')
 
     
     def __str__(self):
