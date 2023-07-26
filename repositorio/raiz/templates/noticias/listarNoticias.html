@@ -20,7 +20,8 @@
                 </div>
                 <div class="acciones">
                     {% if user.is_authenticated %}
-                        {% if user.is_staff or user == noticia.autor %}
+                    
+                        {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
                             <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-outline-danger">Eliminar</button>

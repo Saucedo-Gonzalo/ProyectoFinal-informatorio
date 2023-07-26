@@ -39,7 +39,7 @@
                 </form>
 
                 {% if user.is_authenticated %}
-                    {% if user.is_staff or user == noticia.autor %}
+                    {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
                         <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-outline-danger">Eliminar</button>
@@ -76,7 +76,7 @@
                         {{ comentario.texto }}
                     </p>
                 </div>
-                {% if user.is_staff or user == noticia.autor %}
+                {% if user.is_staff or user == comentario.usuario or user.es_colaborador %}
                     <form action="{% url 'noticias:eliminarComentario' comentario.pk %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-link text-danger">
@@ -88,6 +88,7 @@
             {% endfor %}
     
             {% if user.is_authenticated %}
+                
                 <small class="d-block text-end mt-3">
                     <form method="POST" action="{% url 'noticias:agregarComentario' noticia.pk %}" >{% csrf_token %}
                         <!-- Campo oculto para el identificador de la noticia -->

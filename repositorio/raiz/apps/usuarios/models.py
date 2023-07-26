@@ -5,3 +5,6 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     pass
+
+    def es_colaborador(self):
+        return self.groups.filter(name='colaborador').exists()
