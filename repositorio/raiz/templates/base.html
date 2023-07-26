@@ -8,7 +8,7 @@
     <title>ODS 2030</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-
+    <script src="{% static 'js/script.js' %}" defer></script>
 
 
 </head>
@@ -22,7 +22,21 @@
             <nav>
                 <a href="{%url 'noticias:listarNoticias'%}">Noticias</a>
                 <a href="{%url 'contacto' %}">Contacto</a>
-                <a href="{%url 'usuarios:loguearse'%}">Login</a>
+                {% if user.is_authenticated%}
+                    <div class="menu2" data-dropdown>
+                            <a class="usuarioBoton" data-dropdown-button href="#">{{user.username}}</a>
+                            <div class="menuUsuario opciones">
+                                    <div class="">
+                                        <a href="#" class="configuracion">Configuración</a>
+                                        <a href="{%url 'usuarios:logout'%}" class="cerrarSesion">Cerrar sesión</a>
+                                    </div>
+                            </div>
+                    </div>
+                    
+                {% endif %}
+                {% if not user.is_authenticated%}
+                    <a href="{%url 'usuarios:loguearse'%}">Login</a>
+                {% endif %}
             </nav>
 
         </div>
