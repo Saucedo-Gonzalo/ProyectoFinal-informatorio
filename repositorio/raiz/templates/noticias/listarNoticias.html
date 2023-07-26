@@ -23,11 +23,11 @@
                         {% if user.is_staff or user == noticia.autor %}
                             <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                             </form>
                             <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-secondary">Editar</button>
+                                <button type="submit" class="btn btn-outline-secondary">Editar</button>
                             </form>
 
                             
@@ -36,7 +36,7 @@
 
                     <form action="{% url 'noticias:mostrarNoticia' noticia.pk %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary" >Ir a la noticia</button>
+                        <button type="submit" class="btn btn-primary" >Ver más...</button>
                     </form>
                 </div>
             </div>

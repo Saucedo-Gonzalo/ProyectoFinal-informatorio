@@ -6,6 +6,8 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/noticias/detalle.css' %}">
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <section id="destacado">
@@ -30,10 +32,6 @@
                 </div>
             </div>
             <div class="acciones">
-                <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
-                <!-- <form action="" method="post">
-                    <button type="submit" class="cargar">Cargar</button>
-                </form> -->
                 <form action="{% url 'noticias:listarNoticias'%}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Volver</button>
@@ -44,14 +42,13 @@
                     {% if user.is_staff or user == noticia.autor %}
                         <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
                         </form>
                         <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary">Editar</button>
+                            <button type="submit" class="btn btn-outline-secondary">Editar</button>
                         </form>
-
-                        
+                      
                     {% endif %}
                 {% endif %}
 
@@ -60,50 +57,61 @@
                     <button type="submit" class="btn btn-primary">Compartir</button>
 
                 </form>
-
-                
-
-
-                
-                
             </div>
         </div>
-    </div>
 
-<!-- Mostrar los comentarios -->
-<div class="comentarios">
-    <h3>Comentarios</h3>
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">   
-        <form method="POST" action="{% url 'noticias:agregarComentario' noticia.pk %}" >{% csrf_token %}
-            <!-- Campo oculto para el identificador de la noticia -->
-            <input type="hidden" name="pk" value="{{ noticia.pk }}">
-            <div class="mb-1">
-                <label for="exampleFormControlInput1" class="form-label" style="font-size: 18px;">Usuario: {{user.username}}</label>
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentario"></textarea>
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Comentarios</h6>
+            
+            {% for comentario in comentarios %}
+            <div class="d-flex text-body-secondary pt-3">
+                <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#007bff" />
+                    <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+                </svg>
+                <div class="flex-grow-1"> <!-- Para que el contenido ocupe todo el espacio disponible -->
+                    <p class="pb-3 mb-0 small lh-sm border-bottom">
+                        <strong class="d-block text-gray-dark">@{{ comentario.usuario }}</strong>
+                        {{ comentario.texto }}
+                    </p>
+                </div>
+                {% if user.is_staff or user == noticia.autor %}
+                    <form action="{% url 'noticias:eliminarComentario' comentario.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                {% endif %}
             </div>
-            <button type="submit" class="btn btn-outline-info">COMENTAR</button>
-        </form>
-    </div>
-
-    {% for comentario in comentarios %}
-    <div class="comentario">
-        <p>{{ comentario.texto }}</p>
-        <!-- Acá debería ir un if y si el usuario tiene permisos le salga lo de editar/eliminar -->
-        <div class="acciones-comentario">
-            <form action="{% url 'noticias:eliminarComentario' comentario.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="eliminar">Eliminar</button>
-            </form>
-
+            {% endfor %}
+    
+            {% if user.is_authenticated %}
+                <small class="d-block text-end mt-3">
+                    <form method="POST" action="{% url 'noticias:agregarComentario' noticia.pk %}" >{% csrf_token %}
+                        <!-- Campo oculto para el identificador de la noticia -->
+                        <input type="hidden" name="pk" value="{{ noticia.pk }}">
+                        <div class="mb-1">
+                            <label for="exampleFormControlInput1" class="form-label" style="font-size: 18px;">Usuario: {{user.username}}</label>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comentario"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Comentar</button>
+                    </form>           
+                </small>
+            {% elif not user.is_authenticated %}
+                <small class="d-block text-end mt-3">
+                    <p>*Para comentar debes <a type="submit" href="{% url 'usuarios:loguearse' %}"><u><b> ingresar </b></a></u></p>
+                </small>
+            {% endif %}
         </div>
     </div>
-    {% endfor %}
-</div>
 
 </section>
-
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
 {%endblock contenido%}
