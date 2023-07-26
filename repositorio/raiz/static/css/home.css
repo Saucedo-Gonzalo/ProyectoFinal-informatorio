@@ -40,7 +40,10 @@ button:hover{
     margin: auto;
 } 
 
-.color-17objetivos{ color: rgb(0, 170, 228);}
+.color-17objetivos{ 
+    color: rgb(0, 170, 228);
+    font-size: 1em;
+}
 
 header.header-section {
     background-color: black;
@@ -54,7 +57,7 @@ header.header-section {
 header {
     background-color: black;
     color: white;
-    padding: 20px;
+    padding: 10px;
 }
 
 header .container {
@@ -69,7 +72,7 @@ header .logo {
     padding: 0;
     font-weight: bold;
     color: white;
-    font-size: 1.6em;
+    font-size: 1.5em;
 }
 
 header nav {
@@ -386,7 +389,7 @@ footer {
         background-image: url(/static/img/home/banner-ods.jpg);
         background-size: cover;
         background-position: center center;
-        height: 500px;
+        height: 600px;
         width: 100%;
     }
 
@@ -453,4 +456,3 @@ footer {
         justify-content: flex-end;
     }
 }
-
