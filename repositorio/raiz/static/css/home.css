@@ -58,6 +58,7 @@ header {
     background-color: black;
     color: white;
     padding: 10px;
+    top: 0;
 }
 
 header .container {
@@ -463,6 +464,7 @@ footer {
     text-decoration: none;
     font-weight: bold;
     color: white;
+    cursor: pointer;
 }
 
 .menuUsuario {
