@@ -2,12 +2,18 @@
 {%load static %}
 {%block contenido%}
 
+
 <head>
     <link rel="stylesheet" href="{% static 'css/noticias/noticias.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 </head>
+
 <section id="noticias">
     <div class="container noticias-container">
+        
+        <div class="acciones">
+            <a href="{% url 'noticias:agregarNoticia' %}" class="btn btn-primary">Agregar Noticia</a>
+        </div>
         {% for noticia in noticias %}
             <div class="noticia">
                 <h2>{{noticia.titulo}}</h2>
