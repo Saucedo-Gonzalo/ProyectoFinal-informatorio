@@ -219,7 +219,6 @@ body {
 
 .menuOpciones {
     position: absolute;
-    z-index: 15;
     margin-top: 16px;
     right:92%;
     padding: 0;
