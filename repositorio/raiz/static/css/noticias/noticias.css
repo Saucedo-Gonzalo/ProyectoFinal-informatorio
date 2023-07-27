@@ -166,3 +166,100 @@ body {
         width: 100%;
     }
 }
+
+.containerOpcNoticia {
+    position: relative;
+    left: 98%;
+    top: -10%;
+    cursor: pointer;
+    padding: 12px 12px;
+}
+
+.opcNoticia {
+    transform: scale(var(--ggs,1));
+    
+    
+}
+.opcNoticia,
+.opcNoticia::after,
+.opcNoticia::before {
+    left: 7px;
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 100%
+}
+.opcNoticia::after,
+.opcNoticia::before {
+    left: 0px;
+    content: "";
+    position: absolute
+}
+.opcNoticia::after {
+    
+    top: 6px
+}
+.opcNoticia::before {
+
+    top: -6px;
+    right: 0
+}
+
+
+.containerOpcNoticia {
+    position: relative;
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.menuUsuario {
+    position: absolute;
+    z-index: 15;
+    margin-top: 16px;
+    right:92%;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.containerOpcNoticia.active > .opcNoticia + .menuUsuario {
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: auto;
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 0rem;
+}
+
+.botonEliminar {
+    background-color: #C45564; 
+    border: none;
+    color: white;
+    padding: 15px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+}
+
+.botonEditar {
+    background-color: #45B398; 
+    border: none;
+    color: white;
+    padding: 15px 35.5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+}
