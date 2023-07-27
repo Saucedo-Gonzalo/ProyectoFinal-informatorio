@@ -170,7 +170,7 @@ body {
 .containerOpcNoticia {
     position: relative;
     left: 98%;
-    top: -10%;
+    top: 0;
     cursor: pointer;
     padding: 12px 12px;
 }
@@ -207,7 +207,6 @@ body {
     top: -6px;
     right: 0
 }
-
 
 .containerOpcNoticia {
     position: relative;

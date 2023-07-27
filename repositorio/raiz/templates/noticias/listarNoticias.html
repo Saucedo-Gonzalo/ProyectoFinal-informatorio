@@ -16,7 +16,6 @@
         </div>
         {% for noticia in noticias %}
             <div class="noticia">
-                <h2>{{noticia.titulo}}</h2>
                 {% if user.is_authenticated %}
                         {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
                             <div class="containerOpcNoticia" data-dropdown data-dropdown-button>
@@ -34,10 +33,10 @@
                                     </div>
                             </div>
                     </div>
-
-
                         {% endif %}
                 {% endif %}
+                <h2>{{noticia.titulo}}</h2>
+                
                 <div class="imagen">
                     <img class="image" src="{{noticia.imagen.url}}">
                     <div class="fecha">{{noticia.autor}} | {{noticia.creado}}</div>
