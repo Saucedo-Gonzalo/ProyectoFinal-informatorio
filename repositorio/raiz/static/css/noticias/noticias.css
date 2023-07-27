@@ -218,7 +218,7 @@ body {
     cursor: pointer;
 }
 
-.menuUsuario {
+.menuOpciones {
     position: absolute;
     z-index: 15;
     margin-top: 16px;
@@ -230,17 +230,18 @@ body {
     transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
 
-.containerOpcNoticia.active > .opcNoticia + .menuUsuario {
+.containerOpcNoticia.active > .opcNoticia + .menuOpciones {
     opacity: 1;
     transform: translateY(0px);
     pointer-events: auto;
 }
 
-.opciones {
+.opcionesN {
     display: grid;
     grid-template-columns: repeat(2, max-content);
     gap: 0rem;
 }
+
 
 .botonEliminar {
     background-color: #C45564; 
