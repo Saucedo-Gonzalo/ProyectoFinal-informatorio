@@ -16,9 +16,8 @@ class Noticia(models.Model):
     titulo = models.CharField(max_length=120)
     creado = models.DateField(auto_now_add=True)
     cuerpo = models.TextField()
-    autor = models.OneToOneField(Usuario, on_delete=models.SET_NULL, null=True, blank=True)
+    autor = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True)
     imagen = models.ImageField(upload_to='noticias', null=True)
-    imagen = models.ImageField(upload_to='noticias',null=True)
     objetivo=models.ForeignKey(Objetivo,on_delete=models.CASCADE,null=True)
     estado = models.CharField(max_length=20,  default='habilitado', blank=True, null=True, db_comment='habilitado, deshabilitado')
 
