@@ -34,7 +34,9 @@ button{
 button:hover{
     background-color: rgb(128, 208, 235);
 }
-
+#searchForm:hover {
+    background-color: rgb(128, 208, 235);
+}
 .container{
     max-width: 1400px;
     margin: auto;

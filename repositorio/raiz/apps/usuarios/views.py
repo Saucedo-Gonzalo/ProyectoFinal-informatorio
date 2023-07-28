@@ -21,3 +21,4 @@ class registrarse(CreateView):
 # Create your views here.
 def loguearse(request):
     return render(request,'usuarios/loguearse.html')
+
