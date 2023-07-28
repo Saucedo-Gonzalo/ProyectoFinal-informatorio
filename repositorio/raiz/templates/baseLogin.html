@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ODS 2030</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 <body>
     <!-- header base -->
@@ -27,19 +27,19 @@
    </header> 
 
    <div style="margin-bottom: 2rem;">
-    {%block contenido%}
+    {% block contenido %}
 
-    {%endblock contenido%}
-  </div>
+    {% endblock contenido %}
+   </div>
 
   
   <!-- footer base -->
-    <footer>
+    <footer class="fixed-bottom">
 
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.15);">
      
-        <a class="text-reset fw-bold" href="https://capacitaciones.chaco.gob.ar">Informatorio 2022</a>
+        <a class="text-reset fw-bold" href="{%url 'home'%}">ODS 2030</a> - © {{ year }} Informatorio 
 
     </footer>
     <script src="https://kit.fontawesome.com/94500f7625.js" crossorigin="anonymous"></script>

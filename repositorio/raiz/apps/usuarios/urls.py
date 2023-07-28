@@ -35,11 +35,6 @@ urlpatterns = [
         template_name='usuarios/reestablecerPassword/password_reset_complete.html'),
         name='password_reset_complete'),                                
 
-    # path('password_reset/', auth.PasswordResetView.as_view(template_name='usuarios/reestablecerPassword/password_reset_form.html', email_template_name='usuarios/reestablecerPassword/password_reset_email.html'), name='password_reset'),
-    # path('password_reset/done/', auth.PasswordResetDoneView.as_view(template_name='usuarios/reestablecerPassword/password_reset_done.html'), name='password_reset_done'),
-    # path('reset/<str:uidb64>/<str:token>/', auth.PasswordResetConfirmView.as_view(template_name='usuarios/reestablecerPassword/password_reset_confirm.html'), name='password_reset_confirm'),
-    # path('reset/done/', auth.PasswordResetCompleteView.as_view(template_name='usuarios/reestablecerPassword/password_reset_complete.html'), name='password_reset_complete'),
-
     path('login/',auth.LoginView.as_view(template_name='usuarios/loguearse.html'),name='loguearse'), #en vez de pasarle una vista mia paso una de django
     path('logout/',auth.LogoutView.as_view(),name="logout"),
 
