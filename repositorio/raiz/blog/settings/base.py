@@ -115,7 +115,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ods2030blog@gmail.com'
-EMAIL_HOST_PASSWORD = 'goya12345'
+EMAIL_HOST_PASSWORD = 'sapgedhnmosdzont'
 
 
 MEDIA_URL = '/media/'

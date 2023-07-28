@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import View
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-
+from django.contrib.auth import views as auth
 from .forms import RegistroForm
 
 
@@ -22,3 +22,9 @@ class registrarse(CreateView):
 def loguearse(request):
     return render(request,'usuarios/loguearse.html')
 
+
+class CustomPasswordResetCompleteView(auth.PasswordResetCompleteView):
+    template_name = 'usuarios/reestablecerPassword/password_reset_complete.html'
+
+    def get(self, request, *args, **kwargs):
+        return redirect('usuarios:loguearse')  # Redirige a la vista 'usuarios:login'
