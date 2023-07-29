@@ -82,3 +82,6 @@ class CustomPasswordResetCompleteView(auth.PasswordResetCompleteView):
 
 #         # Llamar al método form_valid de la clase padre para continuar con la lógica de redirección
 #         return super().form_valid(form)
+
+# class CustomPasswordResetConfirmView(auth.PasswordResetConfirmView):
+#     form_class = CustomPasswordResetConfirmViewForm

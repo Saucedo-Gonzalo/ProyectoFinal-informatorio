@@ -23,6 +23,8 @@ LOGIN_REDIRECT_URL =reverse_lazy('home')
 LOGOUT_REDIRECT_URL =reverse_lazy('home')
 LOGIN_URL =reverse_lazy('login') # para que se pueda redirigir y se loguee el usuario 
 
+PASSWORD_RESET_TIMEOUT = 14400 # Establecer la duración del link de validación a 4 horas (14400 segundos)
+
 # Application definition
 # aca se deben agregar TODAS las apps que se creen.
 
