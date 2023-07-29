@@ -10,10 +10,13 @@
 
 <section id="noticias">
     <div class="container noticias-container">
-        
-        <div class="acciones">
-            <a href="{% url 'noticias:agregarNoticia' %}" class="botonAgregarNoticia">Agregar Noticia</a>
-        </div>
+            {% if user.is_authenticated %}
+                {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
+                    <div class="acciones">
+                        <a href="{% url 'noticias:agregarNoticia' %}" class="botonAgregarNoticia">Agregar Noticia</a>
+                    </div>
+                {% endif %}
+            {% endif %}
         {% for noticia in noticias %}
             <div class="noticia">
                 {% if user.is_authenticated %}
