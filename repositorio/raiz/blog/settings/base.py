@@ -21,7 +21,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'   #para el sistema de autenticacion de usua
 
 LOGIN_REDIRECT_URL =reverse_lazy('home')
 LOGOUT_REDIRECT_URL =reverse_lazy('home')
-LOGIN_URL =reverse_lazy('login') # para que se pueda redirigir y se loguee el usuario 
+LOGIN_URL =reverse_lazy('usuarios:loguearse') # para que se pueda redirigir y se loguee el usuario 
 
 PASSWORD_RESET_TIMEOUT = 14400 # Establecer la duración del link de validación a 4 horas (14400 segundos)
 
