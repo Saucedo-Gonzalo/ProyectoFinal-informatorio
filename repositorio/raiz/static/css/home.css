@@ -473,7 +473,7 @@ footer {
 .menuUsuario {
     position: absolute;
     z-index: 15;
-    margin-top: 16px;
+    margin-top: 18px;
     right:0px;
     padding: 0;
     opacity: 0;

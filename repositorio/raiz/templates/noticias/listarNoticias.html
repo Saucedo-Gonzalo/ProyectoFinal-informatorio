@@ -12,11 +12,7 @@
     <div class="container noticias-container">
         
         <div class="acciones">
-            {% if user.is_authenticated %}
-                {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
-                    <a href="{% url 'noticias:agregarNoticia' %}" class="btn btn-primary">Agregar Noticia</a>
-                {% endif %}
-            {% endif %}
+            <a href="{% url 'noticias:agregarNoticia' %}" class="botonAgregarNoticia">Agregar Noticia</a>
         </div>
         {% for noticia in noticias %}
             <div class="noticia">
