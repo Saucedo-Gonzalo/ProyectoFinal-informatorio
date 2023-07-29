@@ -1,6 +1,7 @@
 #VER QUE NO SIRVE
 from django import forms
 from django.shortcuts import render,get_object_or_404,redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import UpdateView, DeleteView, CreateView
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -42,7 +43,21 @@ def agregarComentario(request,pk):
 
 #read
 def listarNoticias(request):
-    noticias = Noticia.objects.all()   # Muestra todas las noticias
+    noticias_list = Noticia.objects.all()
+
+    # Configurar la paginación: 9 noticias por página
+    paginator = Paginator(noticias_list, 4)
+    page = request.GET.get('page')
+
+    try:
+        noticias = paginator.page(page)
+    except PageNotAnInteger:
+        # Si el parámetro 'page' no es un número, mostrar la primera página
+        noticias = paginator.page(1)
+    except EmptyPage:
+        # Si el número de página está fuera de rango, mostrar la última página
+        noticias = paginator.page(paginator.num_pages)
+
     context = {'noticias': noticias}
     return render(request, 'noticias/listarNoticias.html', context)
 

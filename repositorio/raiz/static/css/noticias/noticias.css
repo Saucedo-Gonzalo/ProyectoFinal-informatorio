@@ -262,12 +262,16 @@ body {
     font-size: 16px;
 }
 
-.btn.btn-primary {
+/* .btn.btn-primary {
     position: absolute;
     right: 5px;
     left:280px;
     bottom: 0px;
     margin-bottom: 5px;
+} */
+
+.btn.btn-primary {
+    margin-top: 10px;
 }
 
 

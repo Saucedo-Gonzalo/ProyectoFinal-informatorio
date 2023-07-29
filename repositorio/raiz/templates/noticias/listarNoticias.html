@@ -1,7 +1,7 @@
-{%extends 'base.html'%}
-{%load static %}
-{%block contenido%}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block contenido %}
 
 <head>
     <link rel="stylesheet" href="{% static 'css/noticias/noticias.css' %}">
@@ -10,36 +10,29 @@
 
 <section id="noticias">
     <div class="container noticias-container">
-            {% if user.is_authenticated %}
-                {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
-                    <div class="acciones">
-                        <a href="{% url 'noticias:agregarNoticia' %}" class="botonAgregarNoticia">Agregar Noticia</a>
-                    </div>
-                {% endif %}
-            {% endif %}
         {% for noticia in noticias %}
             <div class="noticia">
                 {% if user.is_authenticated %}
-                        {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
-                            <div class="containerOpcNoticia" data-dropdown data-dropdown-button>
-                                <a class="opcNoticia" data-dropdown-button></a>
-                                <div class="menuOpciones opcionesN">
-                                    <div class="">
-                                        <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
-                                            {% csrf_token %}
-                                            <button type="submit" class="botonEditar">Editar</button>
-                                        </form>
-                                        <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
-                                            {% csrf_token %}
-                                            <button type="submit" class="botonEliminar">Eliminar</button>
-                                        </form>
-                                    </div>
+                    {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
+                        <div class="containerOpcNoticia" data-dropdown data-dropdown-button>
+                            <a class="opcNoticia" data-dropdown-button></a>
+                            <div class="menuOpciones opcionesN">
+                                <div class="">
+                                    <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
+                                        {% csrf_token %}
+                                        <button type="submit" class="botonEditar">Editar</button>
+                                    </form>
+                                    <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="botonEliminar">Eliminar</button>
+                                    </form>
                                 </div>
                             </div>
-                        {% endif %}
+                        </div>
+                    {% endif %}
                 {% endif %}
                 <h2>{{noticia.titulo}}</h2>
-                
+
                 <div class="imagen">
                     <img class="image" src="{{noticia.imagen.url}}">
                     <div class="fecha">{{noticia.autor}} | {{noticia.creado}}</div>
@@ -48,17 +41,52 @@
                     <p>{{noticia.cuerpo|truncatewords:30}}</p>
                 </div>
                 <div class="acciones">
-                    
-
                     <form action="{% url 'noticias:mostrarNoticia' noticia.pk %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary" >Ver más...</button>
+                        <button type="submit" class="btn btn-primary">Ver más...</button>
                     </form>
                 </div>
             </div>
         {% endfor %}
+
+        
     </div>
+    <!-- Paginación -->
+    <nav aria-label="Paginación" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if noticias.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="Primera">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ noticias.previous_page_number }}" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for num in noticias.paginator.page_range %}
+                {% if noticias.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if noticias.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ noticias.next_page_number }}" aria-label="Siguiente">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ noticias.paginator.num_pages }}" aria-label="Última">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </section>
 
-
-{%endblock contenido%}
+{% endblock contenido %}
