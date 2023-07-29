@@ -8,7 +8,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth import views as auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.usuarios.models import Usuario
+from django.contrib.auth.models import Group
 from .forms import RegistroForm
+from django.db import IntegrityError
+
 # from django.core.mail import send_mail
 # from django.template.loader import render_to_string
 # from django.utils.http import urlsafe_base64_encode
@@ -141,21 +144,26 @@ def modificarUsuario(request, pk):
         email = request.POST['email']
         es_colaborador = 'es_colaborador' in request.POST
 
+        try:
         # Actualizar el usuario con los datos modificados
-        usuario.username = username
-        usuario.email = email
-        
-        # Actualizar la pertenencia al grupo "colaborador"
-        grupo_colaborador = 'colaborador'
-        if es_colaborador:
-            usuario.groups.add(es_colaborador)
-        else:
-            usuario.groups.remove(es_colaborador)
-        
-        usuario.save()
+            usuario.username = username
+            usuario.email = email
+            
+            colaborador_group = Group.objects.get(name='colaborador')
+            if es_colaborador:
+                colaborador_group.user_set.add(usuario)
+            else:
+                colaborador_group.user_set.remove(usuario)
+            
+            usuario.save()
 
-        # Redireccionar a la lista de usuarios o a otra página de tu elección
-        return redirect('usuarios:listarUsuarios')
+            # Redireccionar a la lista de usuarios o a otra página de tu elección
+            return redirect('usuarios:listarUsuarios')
+        except IntegrityError:
+            # Si se produce una excepción de integridad debido a que el nombre de usuario ya existe, mostrar un mensaje de error.
+            mensajeError = "El nombre de usuario ya está en uso. Por favor, elige otro nombre."
+            context = {'usuario': usuario, 'es_colaborador': usuario.groups.filter(name='colaborador').exists(), 'mensajeError': mensajeError}
+            return render(request, 'usuarios/modificar.html', context)
 
     # Si la petición es GET, mostrar el formulario con los datos actuales del usuario
     context = {'usuario': usuario, 'es_colaborador': usuario.groups.filter(name='colaborador').exists()}
