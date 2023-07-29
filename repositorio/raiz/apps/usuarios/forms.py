@@ -8,7 +8,7 @@ from .models import Usuario
 
 #formato usual de registro de usuarios
 class RegistroForm(UserCreationForm):
-    Email = forms.EmailField(label='Email',required=True, 
+    email = forms.EmailField(label='Email',required=True, 
                     widget=forms.TextInput(attrs={'placeholder': 'Email'}))
     
     first_name = forms.CharField(label='Nombre',required=True, 
@@ -27,7 +27,7 @@ class RegistroForm(UserCreationForm):
             'first_name',
             'last_name',
             'username',
-            'Email',
+            'email',
             'password1',
             'password2',
         ]
