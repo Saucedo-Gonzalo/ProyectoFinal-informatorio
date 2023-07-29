@@ -9,6 +9,8 @@ app_name= 'usuarios'
 urlpatterns = [
     
     path('registrarse/',views.registrarse.as_view(), name='registrarse'),
+
+    path('password_change/', views.password_change.as_view(), name='password_change'),
     #recuperacion de Password
     path(
         'password_reset/',

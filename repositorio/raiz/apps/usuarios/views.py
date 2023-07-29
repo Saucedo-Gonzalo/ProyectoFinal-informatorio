@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import View
-from django.views.generic import CreateView
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm
+from django.contrib.auth import update_session_auth_hash
+
+from django.views.generic import CreateView,FormView
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth
 from .forms import RegistroForm
@@ -85,3 +86,29 @@ class CustomPasswordResetCompleteView(auth.PasswordResetCompleteView):
 
 # class CustomPasswordResetConfirmView(auth.PasswordResetConfirmView):
 #     form_class = CustomPasswordResetConfirmViewForm
+
+# def password_change(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Actualiza la sesión del usuario para mantenerlo autenticado
+#             return redirect('home')  # Cambia esto a la ruta a la que quieres redirigir después de cambiar la contraseña
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'usuarios/cambiarPassword/password_change.html', {'form': form})
+
+class password_change(FormView):
+    template_name = 'usuarios/cambiarPassword/password_change.html'
+    form_class = SetPasswordForm
+    success_url = reverse_lazy('home')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        update_session_auth_hash(self.request, form.user)
+        return super().form_valid(form)
