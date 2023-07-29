@@ -1,0 +1,164 @@
+{% load static %}
+
+{% block contenido %}
+
+<head>
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <div class="container mt-4">
+    <a href="{% url 'home' %}" class="btn btn-dark">Volver</a>
+    <div class="row justify-content-end">
+      <div class="col-md-4">
+        <div class="input-group">
+          <input class="form-control" type="text" id="searchInput" placeholder="Buscar usuario" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+          <button class="btn btn-dark" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <table class="table table-striped mt-2">
+      <thead>
+        <tr>
+          <th>Nombre de Usuario</th>
+          <th>Email</th>
+          <th class="text-center">¿Es Colaborador?</th>
+          <th style="width: 100px;">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+          {% if not user.username == usuario.username %}
+            <tr>
+              <td>{{ usuario.username }}</td>
+              <td>{{ usuario.email }}</td>
+              <td class="text-center">{% if usuario.es_colaborador %}Sí{% else %}No{% endif %}</td>
+              <td>
+                <!-- Iconos para editar y eliminar -->
+                <a href="{% url 'usuarios:modificarUsuario' usuario.pk %}" class="btn btn-primary btn-sm mx-1">
+                  <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'usuarios:eliminarUsuario' usuario.pk %}" class="btn btn-danger btn-sm mx-1">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          {%endif%}
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- Paginación -->
+    <nav aria-label="Paginación" class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% if usuarios.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?pagina=1" aria-label="Primera">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?pagina={{ usuarios.previous_page_number }}" aria-label="Anterior">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% endif %}
+        {% for num in usuarios.paginator.page_range %}
+          {% if usuarios.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?pagina={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if usuarios.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?pagina={{ usuarios.next_page_number }}" aria-label="Siguiente">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?pagina={{ usuarios.paginator.num_pages }}" aria-label="Última">
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+
+  <!-- Agregar los enlaces a los archivos de Bootstrap JS al final del cuerpo del documento -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    
+   // Función para filtrar los usuarios
+  function filterUsers() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toLowerCase();
+    table = document.querySelector('table');
+    tr = table.getElementsByTagName('tr');
+
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[0]; // Index 0 corresponds to the first column (Nombre de Usuario)
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
+  }
+
+  document.getElementById('btnNavbarSearch').addEventListener('click', filterUsers);
+
+  document.getElementById('searchInput').addEventListener('input', filterUsers);
+
+  document.getElementById('searchInput').addEventListener('keyup', function(event) {
+    // Detectar si se presionó la tecla "Enter" (código 13)
+    if (event.keyCode === 13) {
+      filterUsers();
+    }
+  });
+
+  document.getElementById('searchInput').addEventListener('blur', function() {
+    // Si el campo de búsqueda está vacío, mostrar todos los usuarios originales
+    if (this.value.trim() === '') {
+      var table = document.querySelector('table');
+      var tr = table.getElementsByTagName('tr');
+
+      for (var i = 0; i < tr.length; i++) {
+        tr[i].style.display = '';
+      }
+    }
+  });
+
+  // Restaurar el filtro de búsqueda después de cambiar de página
+  window.addEventListener('popstate', function(event) {
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toLowerCase();
+    var table = document.querySelector('table');
+    var tr = table.getElementsByTagName('tr');
+
+    for (var i = 0; i < tr.length; i++) {
+      var td = tr[i].getElementsByTagName('td')[0];
+      if (td) {
+        var txtValue = td.textContent || td.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
+  });
+  </script>
+</body>
+
+{% endblock contenido %}

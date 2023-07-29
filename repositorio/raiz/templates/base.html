@@ -34,7 +34,10 @@
                             <a class="usuarioBoton" data-dropdown-button><i class="fas fa-user fa-fw"></i>{{user.username}} <i class="fas fa-caret-down"></i></a>
                             <div class="menuUsuario opciones">
                                     <div class="">
-                                        <a href="{%url 'usuarios:password_change'%}" class="configuracion">Configuración</a>
+                                        {% if user.is_staff %}
+                                            <a href="{%url 'usuarios:listarUsuarios'%}" class="usuarios">Usuarios</a>
+                                        {%endif%}
+                                        <a href="{%url 'usuarios:password_change'%}" class="configuracion">Cuenta</a>
                                         <a href="{%url 'usuarios:logout'%}" class="cerrarSesion">Cerrar sesión</a>
                                     </div>
                             </div>

@@ -1,10 +1,13 @@
-from django.shortcuts import redirect, render
+
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import update_session_auth_hash
-
+from django.contrib import messages
 from django.views.generic import CreateView,FormView
 from django.urls import reverse_lazy
 from django.contrib.auth import views as auth
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from apps.usuarios.models import Usuario
 from .forms import RegistroForm
 # from django.core.mail import send_mail
 # from django.template.loader import render_to_string
@@ -30,12 +33,10 @@ def loguearse(request):
     return render(request,'usuarios/loguearse.html')
 
 
-# asi lo hago asi envia dos emails, uno con etiquetas html y otro sin
 class CustomPasswordResetCompleteView(auth.PasswordResetCompleteView):
-    #template_name = 'usuarios/reestablecerPassword/password_reset_complete.html'
 
     def get(self, request, *args, **kwargs):
-        return redirect('usuarios:loguearse')  # Redirige a la vista 'usuarios:login'
+        return redirect('usuarios:password_success')  # Redirige a la vista 'usuarios:loguearse' luego del mensaje
     
 
     
@@ -84,19 +85,7 @@ class CustomPasswordResetCompleteView(auth.PasswordResetCompleteView):
 #         # Llamar al método form_valid de la clase padre para continuar con la lógica de redirección
 #         return super().form_valid(form)
 
-# class CustomPasswordResetConfirmView(auth.PasswordResetConfirmView):
-#     form_class = CustomPasswordResetConfirmViewForm
 
-# def password_change(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)  # Actualiza la sesión del usuario para mantenerlo autenticado
-#             return redirect('home')  # Cambia esto a la ruta a la que quieres redirigir después de cambiar la contraseña
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     return render(request, 'usuarios/cambiarPassword/password_change.html', {'form': form})
 
 class password_change(FormView):
     template_name = 'usuarios/cambiarPassword/password_change.html'
@@ -112,3 +101,62 @@ class password_change(FormView):
         form.save()
         update_session_auth_hash(self.request, form.user)
         return super().form_valid(form)
+    
+def password_success(request):
+    return render(request,'usuarios/cambiarPassword/password_success.html') 
+    
+def listarUsuarios(request):
+    usuarios_list = Usuario.objects.all()   # Muestra todas las noticias
+
+    # Configurar la paginación: 10 usuarios por página
+    paginator = Paginator(usuarios_list, 15)
+    page = request.GET.get('pagina')
+
+    try:
+        usuarios = paginator.page(page)
+    except PageNotAnInteger:
+        # Si el parámetro 'page' no es un número, mostrar la primera página
+        usuarios = paginator.page(1)
+    except EmptyPage:
+        # Si el número de página está fuera de rango, mostrar la última página
+        usuarios = paginator.page(paginator.num_pages)
+
+    context = {'usuarios': usuarios}
+    return render(request, 'usuarios/listar.html', context)
+
+
+
+def eliminarUsuario(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
+    usuario.delete()
+    messages.success(request, 'El usuario ha sido eliminado')
+    return redirect('usuarios:listarUsuarios')
+
+def modificarUsuario(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+
+    if request.method == 'POST':
+        # Obtener los datos enviados por el formulario
+        username = request.POST['username']
+        email = request.POST['email']
+        es_colaborador = 'es_colaborador' in request.POST
+
+        # Actualizar el usuario con los datos modificados
+        usuario.username = username
+        usuario.email = email
+        
+        # Actualizar la pertenencia al grupo "colaborador"
+        grupo_colaborador = 'colaborador'
+        if es_colaborador:
+            usuario.groups.add(es_colaborador)
+        else:
+            usuario.groups.remove(es_colaborador)
+        
+        usuario.save()
+
+        # Redireccionar a la lista de usuarios o a otra página de tu elección
+        return redirect('usuarios:listarUsuarios')
+
+    # Si la petición es GET, mostrar el formulario con los datos actuales del usuario
+    context = {'usuario': usuario, 'es_colaborador': usuario.groups.filter(name='colaborador').exists()}
+    return render(request, 'usuarios/modificar.html', context)
