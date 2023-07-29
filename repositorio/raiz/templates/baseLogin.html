@@ -8,6 +8,7 @@
     <title>ODS 2030</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body>
     <!-- header base -->
@@ -28,13 +29,16 @@
                 <a href="{%url 'contacto' %}">Contacto</a>
                 {% if user.is_authenticated%}
                     <div class="menu2" data-dropdown>
-                            <a class="usuarioBoton" data-dropdown-button><i class="fas fa-user fa-fw"></i>{{user.username}} <i class="fas fa-caret-down"></i></a>
-                            <div class="menuUsuario opciones">
-                                    <div class="">
-                                        <a href="{%url 'usuarios:password_change'%}" class="configuracion">Configuración</a>
-                                        <a href="{%url 'usuarios:logout'%}" class="cerrarSesion">Cerrar sesión</a>
-                                    </div>
-                            </div>
+                        <a class="usuarioBoton" data-dropdown-button><i class="fas fa-user fa-fw"></i>{{user.username}} <i class="fas fa-caret-down"></i></a>
+                        <div class="menuUsuario opciones">
+                                <div class="">
+                                    {% if user.is_staff %}
+                                        <a href="{%url 'usuarios:listarUsuarios'%}" class="usuarios">Usuarios</a>
+                                    {%endif%}
+                                    <a href="{%url 'usuarios:password_change'%}" class="configuracion">Cuenta</a>
+                                    <a href="{%url 'usuarios:logout'%}" class="cerrarSesion">Cerrar sesión</a>
+                                </div>
+                        </div>
                     </div>
                     
                 {% endif %}
@@ -63,6 +67,7 @@
         <a class="text-reset fw-bold" href="{%url 'home'%}">ODS 2030</a> - © {{ year }} Informatorio 
 
     </footer>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="https://kit.fontawesome.com/94500f7625.js" crossorigin="anonymous"></script>
 </body>
 </html>
