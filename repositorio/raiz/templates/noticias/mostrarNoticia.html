@@ -5,15 +5,13 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/noticias/detalle.css' %}">
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 </head>
 
 <section id="destacado">
     <div class="container2">
         <div class="noticia noticia-destacada">
-            <!-- esto agregue para la edicion y eliminacion -->
+            <!-- Para la edición y eliminación -->
             {% if user.is_authenticated %}
                 {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
                     <div class="containerOpcNoticia" data-dropdown data-dropdown-button>
@@ -59,20 +57,6 @@
                     <button type="submit" class="btn btn-primary">Volver</button>
 
                 </form>
-
-                <!-- {% if user.is_authenticated %}
-                    {% if user.is_staff or user == noticia.autor or user.es_colaborador %}
-                        <form action="{% url 'noticias:eliminarNoticia' noticia.pk %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-                        </form>
-                        <form action="{% url 'noticias:modificarNoticia' noticia.pk %}" method="get">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-secondary">Editar</button>
-                        </form>
-                      
-                    {% endif %}
-                {% endif %} -->
 
                 <form action="#" method="post">
                     {% csrf_token %}

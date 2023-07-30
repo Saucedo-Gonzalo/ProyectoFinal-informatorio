@@ -112,7 +112,7 @@ def listarUsuarios(request):
     usuarios_list = Usuario.objects.all()   # Muestra todas las noticias
 
     # Configurar la paginación: 10 usuarios por página
-    paginator = Paginator(usuarios_list, 15)
+    paginator = Paginator(usuarios_list, 10)
     page = request.GET.get('pagina')
 
     try:

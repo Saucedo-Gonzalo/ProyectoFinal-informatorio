@@ -1,61 +1,63 @@
+{%extends 'baseLogin.html' %}
 {% load static %}
 {% block contenido %}
 
 <head>
   <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <script src="{% static 'js/scriptsBlog.js' %}"></script>
+  <!-- <style>
+    .margen{
+      margin-top: 60px;
+    }
+  </style> -->
 </head>
 
-<div class="container"> <!-- Agrega un contenedor para centrar el formulario -->
-  <div class="text-center">
-    <h2><b>EDICIÓN DE USUARIO</b></h2>
+<div class="margen" style="margin-top: 60px;">
+  <div class="container"> <!-- Agrega un contenedor para centrar el formulario -->
+    <div class="text-center">
+      <h2><b>EDICIÓN DE USUARIO</b></h2>
+    </div>
+    <form method="post" id="formulario">
+
+      {% csrf_token %}
+
+      {% if mensajeError %}
+      <div class="alert alert-danger">
+        <strong>Error:</strong> {{ mensajeError }}
+      </div>
+      {% endif %}
+      <!-- Nombre de Usuario -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ usuario.username }}" required>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" required>
+      </div>
+
+      {%if user.is_staff%}
+      <!-- ¿Es Colaborador? -->
+          <div class="mb-3">
+          <label class="form-check-label">¿Es Colaborador?</label>
+          <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="es_colaborador" name="es_colaborador" {% if usuario.es_colaborador %}checked{% endif %}>
+          </div>
+          </div>
+      {%else%}
+          <div class="mb-3">
+              <a href="{% url 'usuarios:password_change' %}" class="btn btn-dark submit-btn">Cambiar contraseña</a>
+          </div>             
+      {% endif %}
+
+      <div class="mb-3">
+        <a href="{% url 'usuarios:listarUsuarios' %}" class="btn btn-outline-primary">Volver</a>
+        <button type="button" class="btn btn-secondary" onclick="cancelarEdicion()" formnovalidate>Cancelar</button>
+        <input type="button" value="Guardar cambios" class="btn btn-primary" onclick="confirmarGuardarCambios()">
+      </div>
+    </form>
   </div>
-  <form method="post" id="formulario">
-
-    {% csrf_token %}
-
-    {% if mensajeError %}
-    <div class="alert alert-danger">
-      <strong>Error:</strong> {{ mensajeError }}
-    </div>
-    {% endif %}
-    <!-- Nombre de Usuario -->
-    <div class="mb-3">
-      <label for="username" class="form-label">Nombre de Usuario</label>
-      <input type="text" class="form-control" id="username" name="username" value="{{ usuario.username }}" required>
-    </div>
-
-    <!-- Email -->
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" value="{{ usuario.email }}" required>
-    </div>
-
-    {%if user.is_staff%}
-    <!-- ¿Es Colaborador? -->
-        <div class="mb-3">
-        <label class="form-check-label">¿Es Colaborador?</label>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="es_colaborador" name="es_colaborador" {% if usuario.es_colaborador %}checked{% endif %}>
-        </div>
-        </div>
-    {%else%}
-        <div class="mb-3">
-            <a href="{% url 'usuarios:password_change' %}" class="btn btn-dark submit-btn">Cambiar contraseña</a>
-        </div>
-
-            
-
-        
-
-    {% endif %}
-
-    <div class="mb-3">
-      <a href="{% url 'usuarios:listarUsuarios' %}" class="btn btn-outline-primary">Volver</a>
-      <button type="button" class="btn btn-secondary" onclick="cancelarEdicion()" formnovalidate>Cancelar</button>
-      <input type="button" value="Guardar cambios" class="btn btn-primary" onclick="confirmarGuardarCambios()">
-    </div>
-  </form>
 </div>
-
-{% endblock %}
+{% endblock contenido%}

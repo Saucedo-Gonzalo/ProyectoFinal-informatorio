@@ -18,26 +18,6 @@
 <section id="los-link">
     
     <div class="carta-17objetivos">
-
-        <!-- <div class="los17">
-            <a href="/objetivos/p1.html"><img src="{% static 'img/objetivos/1ods.jpg' %}" alt="Objetivo 1"></a>
-            <a href="/objetivos/p2.html"><img src="{% static 'img/objetivos/2ods.jpg' %}" alt="Objetivo 2"></a>
-            <a href="/objetivos/p3.html"><img src="{% static 'img/objetivos/3ods.jpg' %}" alt="Objetivo 3"></a>
-            <a href="/objetivos/p4.html"><img src="{% static 'img/objetivos/4ods.jpg' %}" alt="Objetivo 4"></a>
-            <a href="/objetivos/p5.html"><img src="{% static 'img/objetivos/5ods.jpg' %}" alt="Objetivo 5"></a>
-            <a href="/objetivos/p6.html"><img src="{% static 'img/objetivos/6ods.jpg' %}" alt="Objetivo 6"></a>
-            <a href="/objetivos/p7.html"><img src="{% static 'img/objetivos/7ods.jpg' %}" alt="Objetivo 7"></a>
-            <a href="/objetivos/p8.html"><img src="{% static 'img/objetivos/8ods.jpg' %}" alt="Objetivo 8"></a>
-            <a href="/objetivos/p9.html"><img src="{% static 'img/objetivos/9ods.jpg' %}" alt="Objetivo 9"></a>
-            <a href="/objetivos/p10.htm"><img src="{% static 'img/objetivos/10ods.jpg' %}" alt="Objetivo 10"></a>
-            <a href="/objetivos/p11.html"><img src="{% static 'img/objetivos/11ods.jpg' %}" alt="Objetivo 11"></a>
-            <a href="/objetivos/p12.html"><img src="{% static 'img/objetivos/12ods.jpg' %}" alt="Objetivo 12"></a>
-            <a href="/objetivos/p13.html"><img src="{% static 'img/objetivos/13ods.jpg' %}" alt="Objetivo 13"></a>
-            <a href="/objetivos/p14.html"><img src="{% static 'img/objetivos/14ods.jpg' %}" alt="Objetivo 14"></a>
-            <a href="/objetivos/p15.html"><img src="{% static 'img/objetivos/15ods.jpg' %}" alt="Objetivo 15"></a>
-            <a href="/objetivos/p16.html"><img src="{% static 'img/objetivos/16ods.jpg' %}" alt="Objetivo 16"></a>
-            <a href="/objetivos/p17.html"><img src="{% static 'img/objetivos/17ods.jpg' %}" alt="Objetivo 17"></a>
-        </div> -->
         <div class="los17">
             {% for i in objetivos %}
                 <a href="{% url 'pagObjetivo' numObjetivo=i %}">

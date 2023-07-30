@@ -3,16 +3,16 @@
 
 {% block contenido %}
 
-<head>
-  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
+<head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
 </head>
 
-
+<div style="margin-top: 60px;">
   <div class="container mt-4">
-    <a href="{% url 'home' %}" class="btn btn-dark">Volver</a>
-    <div class="row justify-content-end">
+    <div class="d-flex justify-content-between mb-3">
+      <a href="{% url 'home' %}" class="btn btn-dark">Volver</a>
       <div class="col-md-4">
         <div class="input-group">
           <input class="form-control" type="text" id="searchInput" placeholder="Buscar usuario" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
@@ -88,7 +88,7 @@
       </ul>
     </nav>
   </div>
-
+</div>
 
   <!-- Agregar los enlaces a los archivos de Bootstrap JS al final del cuerpo del documento -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -105,7 +105,7 @@
     tr = table.getElementsByTagName('tr');
 
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName('td')[0]; // Index 0 corresponds to the first column (Nombre de Usuario)
+      td = tr[i].getElementsByTagName('td')[0]; 
       if (td) {
         txtValue = td.textContent || td.innerText;
         if (txtValue.toLowerCase().indexOf(filter) > -1) {
