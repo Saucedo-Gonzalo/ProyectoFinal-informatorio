@@ -62,7 +62,7 @@ def buscarNoticias(request):
 
 
 def listarNoticias(request):
-    noticias_list = Noticia.objects.all()
+    noticias_list = Noticia.objects.all().order_by('-creado')
 
     # Configurar la paginación: 9 noticias por página
     paginator = Paginator(noticias_list, 6)
