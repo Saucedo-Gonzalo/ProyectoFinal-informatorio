@@ -65,7 +65,7 @@ def listarNoticias(request):
     noticias_list = Noticia.objects.all()
 
     # Configurar la paginación: 9 noticias por página
-    paginator = Paginator(noticias_list, 4)
+    paginator = Paginator(noticias_list, 6)
     page = request.GET.get('page')
 
     try:
