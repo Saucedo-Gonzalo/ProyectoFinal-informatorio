@@ -85,6 +85,8 @@ header nav {
     padding-bottom: 20px;
 }
 
+
+
 header a {
     padding: 5px 12px;
     text-decoration: none;
@@ -370,6 +372,7 @@ footer {
 
 
 @media (min-width: 720px){
+    
     header{
         position: fixed;
         width: 100%;
