@@ -13,7 +13,9 @@ urlpatterns = [
 
     #read
     path('listarNoticias/', views.listarNoticias, name='listarNoticias'),
+    path('buscarNoticias/', views.buscarNoticias, name='buscarNoticias'),
     path('mostrarNoticia/<int:pk>/', views.mostrarNoticia, name='mostrarNoticia'),
+
 
     # path('listarPorFecha/', views.listarPorFecha, name='listarPorFecha'),
     # path('listarPorObjetivo/<int:pk>', views.listarPorObjetivo, name='listarPorObjetivo'),

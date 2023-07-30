@@ -9,7 +9,7 @@ from .forms import NoticiaAgregarForm, NoticiaForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib import messages
-
+from django.db.models import Q
 from django.urls import reverse
 from .models import Noticia,Comentario
 
@@ -42,6 +42,25 @@ def agregarComentario(request,pk):
 
 
 #read
+
+def buscarNoticias(request):
+    query = request.POST.get('buscar')
+    noticias = None
+
+    if query:
+        noticias = Noticia.objects.filter(
+            Q(titulo__icontains=query) |
+            Q(cuerpo__icontains=query) |
+            Q(objetivo__nombre__icontains=query) |
+            Q(autor__username__icontains=query)
+        )
+
+    context = {
+        'noticias': noticias
+    }
+    return render(request, 'noticias/listarNoticias.html', context)
+
+
 def listarNoticias(request):
     noticias_list = Noticia.objects.all()
 
