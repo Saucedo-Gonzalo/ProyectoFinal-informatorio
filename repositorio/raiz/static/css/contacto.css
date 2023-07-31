@@ -36,3 +36,44 @@ h2 {
   margin-top: 20px;
 }
 
+.fa {
+  padding:30px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.fa-facebook {
+  background-color: #3b5998;
+  color: white;
+}
+
+.fa-whatsapp {
+  background-color: #25d366;
+  color: white;
+}
+
+.fa-instagram {
+  background-color: #e4405f;
+  color: white;
+}
+
+.fa-github {
+  background-color: #333;
+  color: white;
+}
+
+.fa-external-link {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.col-md-6 {
+  text-align:center;
+}
+
+.col-md-6 a {
+  width: calc(110% / 6);
+}
