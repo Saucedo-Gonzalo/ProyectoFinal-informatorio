@@ -20,7 +20,7 @@ h6{ font-size: 1.55em;}
 p{ font-size: 1.25em;}
 
 
-button{
+.botonHome{
     font-size: 1.25em;
     font-weight: bold;
     padding: 10px 30px;
@@ -50,6 +50,7 @@ button:hover{
 header.header-section {
     background-color: black;
     color: white;
+    padding: 10px;
 }
 
 .header-section a {
@@ -66,9 +67,10 @@ header {
 
 header .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
 }
 
 header .logo {
@@ -475,6 +477,7 @@ footer {
 
 .menuUsuario {
     position: absolute;
+    text-align: center;
     z-index: 15;
     margin-top: 18px;
     right:0px;
@@ -492,36 +495,36 @@ footer {
 }
 
 .opciones {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(2, max-content);
     gap: 0rem;
 }
 
+.usuarios {
+    background-color: #f58a09; 
+    border: none;
+    color: white;
+    padding: 15px 30%;
+
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
 .configuracion{
     background-color: #00aae4; 
     border: none;
     color: white;
-    padding: 15px 27px;
+    padding: 15px 54px;
     text-align: center;
     text-decoration: none;
-    display: flex;
+    display: inline-block;
     font-size: 16px;
 }
 .cerrarSesion {
     background-color: #45B398; 
     border: none;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-.usuarios {
-    background-color: #f58a09; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
+    padding: 15px 36px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
