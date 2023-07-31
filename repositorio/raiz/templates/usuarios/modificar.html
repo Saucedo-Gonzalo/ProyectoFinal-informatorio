@@ -48,7 +48,11 @@
       {% endif %}
 
       <div class="mb-3">
-        <a href="{% url 'usuarios:listarUsuarios' %}" class="btn btn-outline-primary">Volver</a>
+        {%if user.is_staff%}
+          <a href="{% url 'usuarios:listarUsuarios' %}" class="btn btn-outline-primary">Volver</a>
+        {%else%}
+          <a href="{% url 'home' %}" class="btn btn-outline-primary">Volver</a>
+        {%endif%}
         <button type="button" class="btn btn-secondary" onclick="cancelarEdicion()" formnovalidate>Cancelar</button>
         <input type="button" value="Guardar cambios" class="btn btn-primary" onclick="confirmarGuardarCambios()">
       </div>
