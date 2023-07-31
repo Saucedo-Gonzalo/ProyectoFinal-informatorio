@@ -32,12 +32,12 @@
                 {% if user.is_authenticated%}
                     <div class="menu2" data-dropdown>
                         <a class="usuarioBoton" data-dropdown-button>Noticias <i class="fas fa-caret-down"></i></a>
-                        <div class="menuUsuario opciones">
+                        <div class="menuNoticias opciones">
                                 <div class="">
                                     
                                   
                                     <a href="{%url 'noticias:listarNoticias' %}" class="configuracion">Ver</a>
-                                    <a href="{%url 'noticias:agregarNoticia'%}" class="cerrarSesion">Agregar</a>
+                                    <a href="{%url 'noticias:agregarNoticia'%}" class="agregar">Agregar</a>
                                 </div>
                         </div>
                     </div>

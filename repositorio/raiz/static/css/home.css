@@ -480,12 +480,31 @@ footer {
     text-align: center;
     z-index: 15;
     margin-top: 18px;
-    right:0px;
+    right:120px;
     padding: 0;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-5px);
     transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.menuNoticias {
+    position: absolute;
+    text-align: center;
+    z-index: 15;
+    margin-top: 18px;
+    right:80px;
+    padding: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.menu2.active > .usuarioBoton + .menuNoticias {
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: auto;
 }
 
 .menu2.active > .usuarioBoton + .menuUsuario {
@@ -498,6 +517,8 @@ footer {
     display: flex;
     grid-template-columns: repeat(2, max-content);
     gap: 0rem;
+    max-width: 54px;
+    left: 0;
 }
 
 .usuarios {
@@ -520,7 +541,19 @@ footer {
     display: inline-block;
     font-size: 16px;
 }
+
 .cerrarSesion {
+    background-color: #45B398; 
+    border: none;
+    color: white;
+    padding: 15px 35.5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.agregar {
     background-color: #45B398; 
     border: none;
     color: white;
