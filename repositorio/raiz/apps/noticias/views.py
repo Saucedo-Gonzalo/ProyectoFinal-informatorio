@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import UpdateView
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .forms import NoticiaAgregarForm
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -12,11 +13,8 @@ from django.db.models import Q
 from django.urls import reverse
 from .models import Noticia,Comentario
 
-#vistas CRUD
-#Noticias
-#create
 
-
+@login_required
 def agregarNoticia(request):
     if request.method == 'POST':
         form = NoticiaAgregarForm(request.POST, request.FILES)
@@ -31,7 +29,7 @@ def agregarNoticia(request):
         form = NoticiaAgregarForm()
     return render(request, 'noticias/agregarNoticia.html', {'form': form})
 
-
+@login_required
 def agregarComentario(request,pk):
 	texto = request.POST.get('comentario')
 	noticia = Noticia.objects.get(pk = pk)
@@ -79,32 +77,25 @@ def listarNoticias(request):
     context = {'noticias': noticias}
     return render(request, 'noticias/listarNoticias.html', context)
 
-def mostrarNoticia(request, pk): #viene como parametro el pk que ingreso en la url
+def mostrarNoticia(request, pk): #Viene como parametro el pk que ingreso en la url
     noticia = get_object_or_404(Noticia, pk=pk)   # Muestra solo una noticia por su pk
-    comentarios = noticia.mis_comentarios.all()  # Obtener todos los comentarios asociados a esta noticia
+    comentarios = noticia.mis_comentarios.all()  # Obtiene todos los comentarios asociados a esta noticia
     context = {'noticia': noticia, 'comentarios': comentarios}
     return render(request, 'noticias/mostrarNoticia.html', context)
 
 #update
-class modificarNoticia(UpdateView):
+class modificarNoticia(LoginRequiredMixin, UpdateView):
     model= Noticia
     template_name= 'noticias/modificarNoticia.html'
-    #form_class = NoticiaForm
     fields = ['titulo', 'cuerpo', 'imagen', 'objetivo', 'estado']
     success_url= reverse_lazy('noticias:listarNoticias')
 
 
     def form_valid(self, form):
-        # Obtener el valor de los campos del formulario
         titulo = form.cleaned_data['titulo']
         cuerpo = form.cleaned_data['cuerpo']
-        #autor = form.cleaned_data['autor']
-        #imagen = form.cleaned_data['imagen']
-        #objetivo = form.cleaned_data['objetivo']
         estado = form.cleaned_data['estado']
 
-
-        # Validar que el campo 'nombre' tenga al menos 3 caracteres
         if len(titulo) < 3:
             form.add_error ('titulo', "El titulo debe tener al menos 3 caracteres.")
             return self.form_invalid(form)
@@ -128,13 +119,14 @@ class modificarNoticia(UpdateView):
     
 
 #delete
+@login_required
 def eliminarNoticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia.delete()
     messages.success(request, 'Noticia eliminada exitosamente.')
     return redirect('noticias:listarNoticias')
 
-
+@login_required
 def eliminarComentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia_pk = comentario.noticia.pk  # Obtenemos el pk de la noticia asociada al comentario
@@ -142,5 +134,5 @@ def eliminarComentario(request, pk):
     messages.success(request, 'comentario eliminado exitosamente.')
     return redirect(reverse('noticias:mostrarNoticia', kwargs={'pk': noticia_pk}))
 
-#__________________________________________________________________________________________
+
 

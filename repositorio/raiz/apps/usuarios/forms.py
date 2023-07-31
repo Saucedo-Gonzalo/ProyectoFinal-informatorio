@@ -1,7 +1,6 @@
 from turtle import color
 from django import forms 
-
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm
 #La función gettext_lazy se utiliza para traducir cadenas de texto en aplicaciones de Django. Permite marcar las cadenas de texto para su traducción, de modo que puedan ser adaptadas a diferentes idiomas en el futuro.
 from django.utils.translation import gettext_lazy as _
 from .models import Usuario
@@ -32,7 +31,3 @@ class RegistroForm(UserCreationForm):
             'password2',
         ]
 
-# class CustomPasswordResetConfirmViewForm(PasswordResetForm):
-#     error_messages = {
-#         'password_mismatch': _('Las contraseñas no coinciden.'),
-#     }
