@@ -20,24 +20,31 @@
       <!-- Formulario de contacto -->
       <div class="col-md-6">
         <h2>Contacto</h2>
-        <form>
+        <form method="POST" action="{%url 'emailContacto'%}"> {% csrf_token %}
           <div class="form-group">
             <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingresa tu nombre" required>
           </div>
           <div class="form-group">
             <label for="email">Correo electrónico:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" required>
+            <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" required>
           </div>
           <div class="form-group">
             <label for="asunto">Asunto:</label>
-            <input type="text" class="form-control" id="asunto" placeholder="Ingresa el asunto de tu mensaje" required>
+            <input type="text" class="form-control" name="subject" placeholder="Ingresa el asunto de tu mensaje" required>
           </div>
           <div class="form-group">
             <label for="mensaje">Mensaje:</label>
-            <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+            <textarea class="form-control" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
           </div>
           <button type="submit" class="btn btn-dark">Enviar</button>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success" role="alert">
+                {{message}}
+              </div>
+            {% endfor %}
+          {% endif %}
         </form>
       </div>
     </div>

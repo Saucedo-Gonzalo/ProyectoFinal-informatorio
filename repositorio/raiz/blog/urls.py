@@ -31,6 +31,8 @@ urlpatterns = [
     path('usuarios/',include('apps.usuarios.urls')),
     path('objetivos/p<int:numObjetivo>.html', views.pagObjetivo, name='pagObjetivo'),
     path('noticias/',include('apps.noticias.urls')),
+    
+    path('emailContacto/', views.emailContacto, name = 'emailContacto'),
 
 
     

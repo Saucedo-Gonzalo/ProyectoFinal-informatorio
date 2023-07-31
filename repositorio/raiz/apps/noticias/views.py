@@ -2,12 +2,11 @@
 from django import forms
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import UpdateView, DeleteView, CreateView
+from django.views.generic import UpdateView
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import NoticiaAgregarForm, NoticiaForm
+from .forms import NoticiaAgregarForm
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse
