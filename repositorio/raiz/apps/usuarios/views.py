@@ -80,7 +80,7 @@ def eliminarUsuario(request, pk):
     messages.success(request, 'El usuario ha sido eliminado')
     return redirect('usuarios:listarUsuarios')
 
-@staff  
+@login_required
 def modificarUsuario(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
 

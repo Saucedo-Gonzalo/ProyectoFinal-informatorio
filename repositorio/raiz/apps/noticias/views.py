@@ -10,6 +10,7 @@ from .forms import NoticiaAgregarForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Q
+from django.utils.decorators import method_decorator
 from django.urls import reverse
 from .models import Noticia,Comentario
 from blog.decorators import *
@@ -24,7 +25,7 @@ def agregarNoticia(request):
             noticia = form.save(commit=False)
             noticia.autor = request.user  # Asignar el usuario actual como autor de la noticia
             noticia.save()
-            messages.success(request, 'Noticia modificada exitosamente.')
+            #messages.success(request, 'Noticia modificada exitosamente.')
             return redirect('noticias:listarNoticias')
     else:
         form = NoticiaAgregarForm()
@@ -85,13 +86,15 @@ def mostrarNoticia(request, pk): #Viene como parametro el pk que ingreso en la u
     return render(request, 'noticias/mostrarNoticia.html', context)
 
 #update
-class modificarNoticia(LoginRequiredMixin, UpdateView):
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(staff_colaborador_autor, name='dispatch')
+class modificarNoticia(UpdateView):
     model= Noticia
     template_name= 'noticias/modificarNoticia.html'
     fields = ['titulo', 'cuerpo', 'imagen', 'objetivo', 'estado']
     success_url= reverse_lazy('noticias:listarNoticias')
-
-
+    
     def form_valid(self, form):
         titulo = form.cleaned_data['titulo']
         cuerpo = form.cleaned_data['cuerpo']
@@ -109,7 +112,7 @@ class modificarNoticia(LoginRequiredMixin, UpdateView):
             form.add_error('estado', "El estado debe ser 'habilitado' , 'deshabilitado'.")
             return self.form_invalid(form)
         
-        messages.success(self.request, 'Noticia modificada exitosamente.')
+        #messages.success(self.request, 'Noticia modificada exitosamente.')
 
         return super().form_valid(form) #Si el 'nombre' es válido, llamamos a super().form_valid(form) para guardar los cambios y redireccionar a la página de mostrar todas
 
@@ -127,7 +130,7 @@ def eliminarNoticia(request, pk):
     messages.success(request, 'Noticia eliminada exitosamente.')
     return redirect('noticias:listarNoticias')
 
-@staff_colaborador_autor
+@staff_colaborador_autor_comentario
 def eliminarComentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia_pk = comentario.noticia.pk  # Obtenemos el pk de la noticia asociada al comentario
