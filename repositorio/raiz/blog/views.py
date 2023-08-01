@@ -19,6 +19,8 @@ def pagObjetivo(request, numObjetivo):
 def Contacto(request):
     return render(request,'contacto/contacto.html')
 
+def permisoDenegado(request):
+    return render(request,'errores/permisoDenegado.html')
 
 def emailContacto(request):
     if request.method == 'POST':

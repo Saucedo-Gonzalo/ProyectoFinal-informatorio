@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.urls import reverse
 from .models import Noticia,Comentario
+from blog.decorators import *
 
 
 @login_required
@@ -119,14 +120,14 @@ class modificarNoticia(LoginRequiredMixin, UpdateView):
     
 
 #delete
-@login_required
+@staff_colaborador_autor
 def eliminarNoticia(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia.delete()
     messages.success(request, 'Noticia eliminada exitosamente.')
     return redirect('noticias:listarNoticias')
 
-@login_required
+@staff_colaborador_autor
 def eliminarComentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     noticia_pk = comentario.noticia.pk  # Obtenemos el pk de la noticia asociada al comentario

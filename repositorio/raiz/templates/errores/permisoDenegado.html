@@ -1,0 +1,25 @@
+{% extends 'baseLogin.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="col-md-6">
+    <div class="text-center">
+      <h1>¡PERMISO DENEGADO!</h1>
+      <p>Será redirigido al inicio</p>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript para la redirección -->
+<script type="text/javascript">
+    // Función para redirigir al Home después de 3 segundos
+    function redireccionarInicio() {
+        window.location.href = "{% url 'home' %}"; // Reemplaza 'home' con el nombre correcto de la URL de inicio
+    }
+
+    //la función se activa luego de 4000 milisegundos (4 segundos)
+    setTimeout(redireccionarInicio, 4000);
+</script>
+{% endblock contenido %}

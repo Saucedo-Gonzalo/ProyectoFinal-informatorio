@@ -34,7 +34,7 @@ urlpatterns = [
     
     path('emailContacto/', views.emailContacto, name = 'emailContacto'),
 
-
+    path('permisoDenegado/', views.permisoDenegado, name = 'permisoDenegado'),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

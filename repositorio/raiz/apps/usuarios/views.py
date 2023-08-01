@@ -13,6 +13,8 @@ from .forms import RegistroForm
 from django.db import IntegrityError
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from blog.decorators import *
+
 
 
 class registrarse(CreateView):
@@ -50,7 +52,7 @@ class password_change(LoginRequiredMixin, FormView):
 def password_success(request):
     return render(request,'usuarios/cambiarPassword/password_success.html') 
     
-@login_required    
+@staff 
 def listarUsuarios(request):
     usuarios_list = Usuario.objects.all()   # Muestra todas las noticias
 
@@ -71,14 +73,14 @@ def listarUsuarios(request):
     return render(request, 'usuarios/listar.html', context)
 
 
-@login_required   
+@staff  
 def eliminarUsuario(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk) #la funcion guarda en su variable pk el id de la noticia para luego borrarla
     usuario.delete()
     messages.success(request, 'El usuario ha sido eliminado')
     return redirect('usuarios:listarUsuarios')
 
-@login_required   
+@staff  
 def modificarUsuario(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
 
